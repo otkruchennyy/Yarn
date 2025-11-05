@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import settingsLogic as sl
 import json
 
 CONFIG_DIR = "config"
@@ -106,10 +107,50 @@ class basicTextAnalyzer:
                 self.after_id = self.app.after(refresh_rate, self.update_padding)
         except Exception:
             pass
-        
+
+
+    
+    def paintSettings(self, key):
+        result = sl.set_active_button(key)
+        print(f"Button {key} pressed, result: {result}")
+
+        if result == "a":
+            self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
+            self.app_settings.lift()
+        elif result == "b":
+            self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
+            self.app_settings.lift()
+        elif result == "c":
+            self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
+            self.app_settings.lift()
+        elif result == "d":
+            self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
+            self.app_settings.lift()
+        elif result == "e":
+            self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
+            self.app_settings.lift()
+        elif result == "f":
+            self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
+            self.app_settings.lift()
+        elif result == "s":
+            self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
+            self.app_settings.lift()
+        else:
+            self.app_settings.place_forget()
+
     def _create_widgets(self):
         main = ctk.CTkFrame(self.app, fg_color=BG_DARK)
         main.pack(fill="both", expand=True)
+
+        # плавающее меню
+        self.app_settings = ctk.CTkFrame(
+            main,
+            fg_color=ACCENT_PRIMARY,
+            width=500,
+            height=300,
+            border_width=1,
+            border_color=ACCENT_SECONDARY
+        )
 
         aside = ctk.CTkFrame(main, width=100, fg_color=ACCENT_SECONDARY)
         aside.pack(side="left", fill="y")
@@ -236,7 +277,8 @@ class basicTextAnalyzer:
             fg_color=ACCENT_PRIMARY,
             border_width=1,
             border_color=ACCENT_SECONDARY,
-            hover_color=ACCENT_SECONDARY
+            hover_color=ACCENT_SECONDARY,
+            command=lambda: self.paintSettings("a")
         )
         btn1.pack(side="top", padx=5, pady=1)
 
@@ -248,7 +290,8 @@ class basicTextAnalyzer:
             fg_color=ACCENT_PRIMARY,
             border_width=1,
             border_color=ACCENT_SECONDARY,
-            hover_color=ACCENT_SECONDARY
+            hover_color=ACCENT_SECONDARY,
+            command=lambda: self.paintSettings("b")
         )
         btn2.pack(side="top", padx=5, pady=1)
 
@@ -260,7 +303,8 @@ class basicTextAnalyzer:
             fg_color=ACCENT_PRIMARY,
             border_width=1,
             border_color=ACCENT_SECONDARY,
-            hover_color=ACCENT_SECONDARY
+            hover_color=ACCENT_SECONDARY,
+            command=lambda: self.paintSettings("c")
         )
         btn3.pack(side="top", padx=5, pady=1)
         
@@ -272,7 +316,8 @@ class basicTextAnalyzer:
             fg_color=ACCENT_PRIMARY,
             border_width=1,
             border_color=ACCENT_SECONDARY,
-            hover_color=ACCENT_SECONDARY
+            hover_color=ACCENT_SECONDARY,
+            command=lambda: self.paintSettings("d")
         )
         btn4.pack(side="top", padx=5, pady=1)
 
@@ -284,7 +329,8 @@ class basicTextAnalyzer:
             fg_color=ACCENT_PRIMARY,
             border_width=1,
             border_color=ACCENT_SECONDARY,
-            hover_color=ACCENT_SECONDARY
+            hover_color=ACCENT_SECONDARY,
+            command=lambda: self.paintSettings("e")
         )
         btn5.pack(side="top", padx=5, pady=1)
 
@@ -296,7 +342,8 @@ class basicTextAnalyzer:
             fg_color=ACCENT_PRIMARY,
             border_width=1,
             border_color=ACCENT_SECONDARY,
-            hover_color=ACCENT_SECONDARY
+            hover_color=ACCENT_SECONDARY,
+            command=lambda: self.paintSettings("f")
         )
         btn6.pack(side="top", padx=5, pady=1)
 
@@ -309,21 +356,11 @@ class basicTextAnalyzer:
             border_width=1,
             border_color=ACCENT_SECONDARY,
             hover_color=ACCENT_SECONDARY,
+            command=lambda: self.paintSettings("s")
         )
         preferences.pack(side="bottom", padx=5, pady=1)
 
 # --------------------------------------------------------------------------------------------------------
-
-        # плавающее меню
-        self.app_settings = ctk.CTkFrame(
-            main,
-            fg_color=ACCENT_PRIMARY,
-            width=500,
-            height=300,
-            border_width=1,
-            border_color=ACCENT_SECONDARY
-        )
-        self.app_settings.place(relx=1, rely=1, anchor="e", x=-60, y=-160)
 
 
 if __name__ == "__main__":
