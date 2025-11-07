@@ -7,7 +7,6 @@ text_editor_noble/
 │   ├── app/
 │   │   ├── __init__.py
 │   │   ├── main_window.py      # Главное окно
-│   │   └── theme_manager.py    # Управление темами
 │   ├── widgets/
 │   │   ├── __init__.py
 │   │   ├── text_editor.py      # Кастомный текстовый редактор
@@ -25,9 +24,13 @@ text_editor_noble/
 │       ├── helpers.py          # Вспомогательные функции
 │       └── terms_manager.py    # принятие условий пользования
 ├── resources/
+├── ├── fonts/
+│   │   ├── basic_fonts.json    # базовые стили для текста
+│   │   └── .json               # планируеться пользовательские, пока нет
 │   ├── themes/
 │   │   ├── dark_theme.json
-│   │   └── light_theme.json
+│   │   ├── light_theme.json
+│   │   └── .json               # планируеться пользовательские, пока нет
 │   └── icons/
 ├── tests/
 ├── requirements.txt

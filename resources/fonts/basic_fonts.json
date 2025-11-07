@@ -1,0 +1,20 @@
+{
+  "main": {
+    "family": "Segoe UI",
+    "size": 12,
+    "weight": "normal",
+    "style": "normal",
+    "line_height": 1.4,
+    "letter_spacing": 0,
+    "color": "#e0e0e0"
+  },
+  "monospace": {
+    "family": "Consolas",
+    "size": 12,
+    "weight": "normal",
+    "style": "normal",
+    "line_height": 1.2,
+    "letter_spacing": 0,
+    "color": "#e0e0e0"
+  }
+}

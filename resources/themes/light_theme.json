@@ -1,0 +1,10 @@
+{
+  "isDark": false,
+  "bg_dark": "#111111",
+  "bg_card": "#121212",
+  "accent_primary": "#202020",
+  "accent_secondary": "#252525",
+  "accent_light": "#7a7a7a",
+  "text_main": "#e0e0e0",
+  "text_muted": "#a0a0a0"
+}
