@@ -14,13 +14,13 @@ class Yarn:
         self.app = QApplication(sys.argv)
         self.terms_manager = TermsManager()
         QTimer.singleShot(0, self.check_terms)
-    
+
     def check_terms(self):
-        if not self.terms_manager.process_terms_decision():
+        if not self.terms_manager.search_termsAccepted():
             print("Условия не приняты. Приложение завершает работу.")
             self.app.quit()
             return
-        
+
         self.launch_main_window()
     
     def launch_main_window(self):

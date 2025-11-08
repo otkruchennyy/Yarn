@@ -5,6 +5,9 @@ Desktop приложение на PySide6.
 ## Установка
 `git clone https://github.com/tsukagahara/Yarn.git`  
 `cd Yarn`  
+`python -m venv venv`  
+`source venv/bin/activate`  # Linux/Mac  
+`venv\Scripts\activate`     # Windows  
 `pip install -r requirements.txt`
 
 ## Запуск

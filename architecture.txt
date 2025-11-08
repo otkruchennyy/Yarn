@@ -4,6 +4,7 @@ text_editor_noble/
 ├── src/
 │   ├── __init__.py
 │   ├── main.py                 # Точка входа
+│   ├── core.py                 # Функции, которые будут использоваться повсеместно
 │   ├── app/
 │   │   ├── __init__.py
 │   │   ├── main_window.py      # Главное окно

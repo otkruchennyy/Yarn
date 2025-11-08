@@ -1,38 +1,31 @@
 import json
 import os
-from PySide6.QtWidgets import (QDialog, QVBoxLayout, 
+import src.core as core
+from PySide6.QtWidgets import (QDialog, QVBoxLayout,
                               QLabel, QPushButton, QTextEdit, QHBoxLayout)
 from PySide6.QtCore import Qt
 
 class TermsManager:
-    def __init__(self, config_path="config/config.json"):
-        self.config_path = config_path
-        self.config_data = {}
+    def __init__(self):
+        self.config_path = "config/config.json"
+        self.config_data = core.get_instructions_as_json(f'{self.config_path}')
 
-    def load_config(self):
-        try:
-            with open(self.config_path, "r", encoding="utf-8") as f:
-                self.config_data = json.load(f)
-        except FileNotFoundError:
-            self.config_data = {"termsAccepted": False}
+    def search_termsAccepted(self):
+        if "termsAccepted" in [x for x in self.config_data]:
+            if self.config_data["termsAccepted"] == True:
+                return True
+            else: return self.show_terms_dialog()
+        else: return self.show_terms_dialog()
 
-    def process_terms_decision(self):
-        self.load_config()
-
-        if self.config_data.get("termsAccepted"):
-            return True
-
-        return self.show_terms_dialog()
-    
     def show_terms_dialog(self):
         dialog = TermsDialog()
         result = dialog.exec()
-        
+
         if result == QDialog.DialogCode.Accepted:
             self.config_data["termsAccepted"] = True
             self.save_config()
             return True
-        
+
         return False
 
     def save_config(self):
