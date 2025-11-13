@@ -1,16 +1,19 @@
 import os
+import json
 
-def get_json_property(path):
-    import json
+def get_json_property(path, preference_name=""):
     try:
         with open(path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            if preference_name=="":
+                return json.load(f)
+            return json.load(f).get(preference_name)
     except FileNotFoundError:
         raise FileNotFoundError(f"JSON файл не найден: {path}")
     except json.JSONDecodeError as e:
         raise ValueError(f"Ошибка парсинга JSON в файле {path}: {e}")
     except Exception as e:
         raise RuntimeError(f"Ошибка при чтении файла {path}: {e}")
+    
     
 from PySide6.QtWidgets import (QDialog, QVBoxLayout,
                             QLabel, QPushButton, QHBoxLayout)
@@ -29,7 +32,6 @@ class colors_is_suitable(QDialog):
         self.setup_ui()
 
     def setup_ui(self):
-        import src.core as core
         layout = QVBoxLayout(self)
 
         label_title = QLabel("Проверка контрасности шрифта на фоне")
@@ -37,7 +39,7 @@ class colors_is_suitable(QDialog):
         label_title.setStyleSheet("font-size: 16px; font-weight: bold; padding: 10px;")
         layout.addWidget(label_title)
 
-        label_text = QLabel(f'Параметр "isDark" в {self.path + '/resources/themes/' + f'{core.get_instruction_as_json('./config/config.json', "theme")}' + '.json'} равен параметру {'\n'} "fontIsDark" в {self.path + '/resources/themes/' + f'{core.get_instruction_as_json('./config/config.json', "fonts")}' + '.json'}, что означает плохую контрасность текста')
+        label_text = QLabel(f'Параметр "isDark" в {self.path + "/resources/themes/" + f'{get_json_property("./config/config.json", "theme")}' + ".json"} равен параметру {'\n'} "fontIsDark" в {self.path + "/resources/themes/" + f'{get_json_property("./config/config.json", "fonts")}' + ".json"}, что означает плохую контрасность текста')
 
         label_text.setAlignment(Qt.AlignmentFlag.AlignLeft)
         label_text.setStyleSheet("font-size: 16px; font-weight: bold; padding: 10px, 2px; margin: 20px;")

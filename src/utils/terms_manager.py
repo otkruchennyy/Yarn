@@ -1,6 +1,6 @@
 import json
 import os
-import src.core as core
+import utils.helpers as helpers
 from PySide6.QtWidgets import (QDialog, QVBoxLayout,
                               QLabel, QPushButton, QTextEdit, QHBoxLayout)
 from PySide6.QtCore import Qt
@@ -8,30 +8,46 @@ from PySide6.QtCore import Qt
 class TermsManager:
     def __init__(self):
         self.config_path = "config/config.json"
-        self.config_data = core.get_instructions_as_json(f'{self.config_path}')
+        # print(f"Загружаем config из: {self.config_path}")
+        
+        self.config_data = helpers.get_json_property(f'{self.config_path}')
+        # print(f"Config data: {self.config_data}")
+
+        if self.config_data is None:
+            # print("Config файл не найден или пустой, создаем базовый")
+            self.config_data = {"termsAccepted": False, "theme": "dark_theme", "fonts": "basic_fonts"}
 
     def search_termsAccepted(self):
-        if "termsAccepted" in [x for x in self.config_data]:
-            if self.config_data["termsAccepted"] == True:
-                return True
-            else: return self.show_terms_dialog()
-        else: return self.show_terms_dialog()
+        # print(f"Проверяем termsAccepted: {self.config_data.get('termsAccepted')}")
+        
+        if self.config_data.get("termsAccepted") == True:
+            # print("Terms уже приняты, открываем главное окно")
+            return True
+        else: 
+            # print("Terms не приняты, показываем диалог")
+            return self.show_terms_dialog()
 
     def show_terms_dialog(self):
+        # print("Открываем диалог лицензии")
         dialog = TermsDialog()
         result = dialog.exec()
+        # print(f"Результат диалога: {result}")
 
         if result == QDialog.DialogCode.Accepted:
+            # print("Пользователь принял лицензию")
             self.config_data["termsAccepted"] = True
             self.save_config()
             return True
 
+        # print("Пользователь отклонил лицензию")
         return False
 
     def save_config(self):
+        # print("Сохраняем config...")
         os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
         with open(self.config_path, "w", encoding="utf-8") as f:
             json.dump(self.config_data, f, indent=2, ensure_ascii=False)
+        # print(f"Config сохранен: {self.config_data}")
 
 
 class TermsDialog(QDialog):

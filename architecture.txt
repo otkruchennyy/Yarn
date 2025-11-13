@@ -4,7 +4,6 @@ text_editor_noble/
 ├── src/
 │   ├── __init__.py
 │   ├── main.py                 # Точка входа
-│   ├── core.py                 # Функции, которые будут использоваться повсеместно
 │   ├── app/
 │   │   ├── __init__.py
 │   │   ├── main_window.py      # Главное окно
@@ -17,14 +16,14 @@ text_editor_noble/
 │   ├── services/
 │   │   ├── __init__.py
 │   │   ├── file_manager.py     # Управление файлами
-│   │   ├── editor_commands.py  # Команды редактора
 │   │   └── syntax_highlighter.py # Подсветка синтаксиса
 │   └── utils/
 │       ├── __init__.py
-│       ├── color_utilts.py     # манипуляции с цветом (hex)
-│       ├── config.py           # Конфигурация
+│       ├── text_processing.py  # утилиты обработки текста
+│       ├── color_utils.py      # манипуляции с цветом (hex)
 │       ├── helpers.py          # Вспомогательные функции
 │       └── terms_manager.py    # принятие условий пользования
+
 ├── resources/
 ├── ├── fonts/
 │   │   ├── basic_fonts.json    # базовые стили для текста
