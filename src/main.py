@@ -15,14 +15,14 @@ class Yarn:
         self.terms_manager = TermsManager()
         QTimer.singleShot(0, self.check_terms)
 
-    def check_terms(self):#, icon_path):
+    def check_terms(self):
         if not self.terms_manager.search_termsAccepted():
             self.app.quit()
             return
         
         self.launch_main_window()
     
-    def launch_main_window(self):#, icon_path):
+    def launch_main_window(self):
         from app.main_window import MainWindow
         self.main_window = MainWindow()
         self.main_window.show()

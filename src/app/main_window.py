@@ -20,8 +20,34 @@ class MainWindow(QMainWindow):
         self.fonts_path = os.path.join(self.base_path, 'resources', 'fonts')
 
         self.theme_default = self.load_theme()
+
+        self.theme_default = self.theme_default or {}
+        if not self.theme_default:
+            self.theme_default = {
+                'isDark': True, 
+                'bg_dark': '#111111', 
+                'bg_card': '#121212', 
+                'accent_primary': '#202020', 
+                'accent_secondary': '#252525', 
+                'accent_light': '#7a7a7a', 
+                'text_main': '#e0e0e0', 
+                'text_muted': '#a0a0a0'
+            }
         self.font_default = self.load_font()
 
+        self.font_default = self.font_default or {}
+        if not self.font_default:
+            self.font_default = {
+                'isDark': True, 
+                'bg_dark': '#111111', 
+                'bg_card': '#121212', 
+                'accent_primary': '#202020', 
+                'accent_secondary': '#252525', 
+                'accent_light': '#7a7a7a', 
+                'text_main': '#e0e0e0', 
+                'text_muted': '#a0a0a0'
+            }
+            
         self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
 
         self.create_widgets()
@@ -120,6 +146,8 @@ class MainWindow(QMainWindow):
         self.header = CustomHeader(theme=self.theme_default, parent=self)
         self.header.setMouseTracking(True)
         self.layout.addWidget(self.header)
+        self.header.minimize_btn.clicked.connect(self.showMinimized)
+        self.header.maximize_btn.clicked.connect(self.toggle_maximize)
         self.header.close_btn.clicked.connect(self.close)
 
         main_content = QHBoxLayout()
@@ -150,6 +178,12 @@ class MainWindow(QMainWindow):
         main_content.addWidget(self.block3)
         
         self.layout.addLayout(main_content)
+    
+    def toggle_maximize(self):
+        if self.isMaximized():
+            self.showNormal()
+        else:
+            self.showMaximized()  
     
     def on_close(self):
         self.close()

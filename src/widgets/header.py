@@ -1,26 +1,16 @@
+import os
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton, QSizePolicy
 from PySide6.QtCore import Qt, QEvent
-from PySide6.QtGui import QPainter, QColor
+from PySide6.QtGui import QPainter, QColor, QPixmap
+import utils.helpers as helpers
 
 class CustomHeader(QWidget):
     def __init__(self, theme=None, parent=None):
         super().__init__(parent)
-        self.theme = theme or {}
-        
-        if not self.theme:
-            self.theme = {
-                'isDark': True, 
-                'bg_dark': '#111111', 
-                'bg_card': '#121212', 
-                'accent_primary': '#202020', 
-                'accent_secondary': '#252525', 
-                'accent_light': '#7a7a7a', 
-                'text_main': '#e0e0e0', 
-                'text_muted': '#a0a0a0'
-            }
         self.bg_color = None
         self.dragging = False
-        
+        self.theme = theme
+        self.logo_img_path = os.path.join(helpers.get_project_root(), "resources", "icons", "png", "Yarn-32.png")
         self.setup_ui()
         self.apply_theme()
     
@@ -75,23 +65,44 @@ class CustomHeader(QWidget):
     def setup_ui(self):
         self.setObjectName("CustomHeader")
         layout = QHBoxLayout(self)
-        self.setFixedHeight(30)
+        self.setFixedHeight(35)
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        layout.setContentsMargins(10, 5, 10, 5)
-        # layout.setContentsMargins(0, 0, 0, 0)
+        # layout.setContentsMargins(10, 5, 10, 5)
+        layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
         self.installEventFilter(self)
         
         self.title_label = QLabel("Yarn")
+        self.title_label.setContentsMargins(5, 0, 5, 0)
         self.title_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         
+
+        self.logo_label = QLabel()
+        self.logo_label.setContentsMargins(5, 0, 5, 0)
+        self.logo_pixmap = QPixmap(self.logo_img_path)
+        if not self.logo_pixmap.isNull():
+            self.logo_label.setPixmap(self.logo_pixmap.scaled(24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        else:
+            print(self.logo_img_path)
+        
+        layout.addWidget(self.logo_label)
         layout.addWidget(self.title_label)
         layout.addStretch()
-        
+
+        self.minimize_btn = QPushButton("_")
+        self.minimize_btn.setFixedSize(50, 25)
+        self.minimize_btn.setCursor(Qt.PointingHandCursor)
+
+        self.maximize_btn = QPushButton("□")
+        self.maximize_btn.setFixedSize(50, 25)
+        self.maximize_btn.setCursor(Qt.PointingHandCursor)
+
         self.close_btn = QPushButton("×")
-        self.close_btn.setFixedSize(25, 25)
+        self.close_btn.setFixedSize(50, 25)
         self.close_btn.setCursor(Qt.PointingHandCursor)
         
+        layout.addWidget(self.minimize_btn)
+        layout.addWidget(self.maximize_btn)
         layout.addWidget(self.close_btn)
     
     def apply_theme(self):
@@ -106,6 +117,32 @@ class CustomHeader(QWidget):
             font-weight: bold;
             font-size: 12px;
             background: transparent;
+        """)
+
+        self.minimize_btn.setStyleSheet(f"""
+            QPushButton {{
+                color: {text_color};
+                border: none;
+                border-radius: 3px;
+                font-size: 16px;
+                font-weight: bold;
+            }}
+            QPushButton:hover {{
+                background-color: #ff555555;
+            }}
+        """)
+        
+        self.maximize_btn.setStyleSheet(f"""
+            QPushButton {{
+                color: {text_color};
+                border: none;
+                border-radius: 3px;
+                font-size: 16px;
+                font-weight: bold;
+            }}
+            QPushButton:hover {{
+                background-color: #ff555555;
+            }}
         """)
 
         self.close_btn.setStyleSheet(f"""
