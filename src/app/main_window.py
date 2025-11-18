@@ -8,7 +8,7 @@ from widgets.window_resize import ResizeHandler, toggle_maximize
 import utils.helpers as helpers
 from widgets.header import CustomHeader
 import widgets.window_resize
-from widgets.statusbar import StatusBar
+from widgets.tabs import tabs
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -163,9 +163,9 @@ class MainWindow(QMainWindow):
         self.header.maximize_btn.clicked.connect(self.toggle_maximize_window)
         self.header.close_btn.clicked.connect(self.close)
 
-        self.statusBar = StatusBar(theme=self.theme_default, parent=self)
-        self.statusBar.setMouseTracking(True)
-        self.layout.addWidget(self.statusBar)
+        self.tabs = tabs(theme=self.theme_default, parent=self)
+        self.tabs.setMouseTracking(True)
+        self.layout.addWidget(self.tabs)
 
         main_content = QHBoxLayout()
     

@@ -1,41 +1,40 @@
 import os
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton, QSizePolicy
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QPainter, QColor, QPixmap
+from PySide6.QtGui import QPainter, QColor
+import utils.helpers as helpers
 
-class StatusBar(QWidget):
+class tabs(QWidget):
     def __init__(self, theme=None, parent=None):
         super().__init__(parent)
         self.bg_color = None
         self.theme = theme
+        self.path_tabs = os.path.join(helpers.get_project_root(), "config", "tabs_config.json")
+        self.property_tabs = helpers.get_json_property(self.path_tabs)
+        self.count_tabs = len(self.property_tabs)
         self.setup_ui()
         self.apply_theme()
-        self.count_tabs = 3 #
+        # print(self.path_tabs)
+        # print(self.property_tabs)
+        # print(self.count_tabs)
     
     def setup_ui(self):
-        self.setObjectName("statusBar")
+        self.setObjectName("tabs")
         layout = QHBoxLayout(self)
         self.setFixedHeight(30)
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
         self.installEventFilter(self)
-
-        self.btn1 = QPushButton("1") #
-        self.btn1.setFixedSize(200, 25)
-        self.btn1.setCursor(Qt.PointingHandCursor)
-
-        self.btn2 = QPushButton("2") #
-        self.btn2.setFixedSize(200, 25)
-        self.btn2.setCursor(Qt.PointingHandCursor)
-
-        self.btn3 = QPushButton("3") #
-        self.btn3.setFixedSize(200, 25)
-        self.btn3.setCursor(Qt.PointingHandCursor)
-        
-        layout.addWidget(self.btn1) #
-        layout.addWidget(self.btn2)
-        layout.addWidget(self.btn3)
+        self.tabs = {}
+        for i in range(self.count_tabs):
+            name = list(self.property_tabs.keys())[i]
+            self.btn = QPushButton(f'{name}')
+            self.btn.setFixedSize(200, 25)
+            self.btn.setCursor(Qt.PointingHandCursor)
+            self.btn.setProperty("class", "tab")
+            self.tabs[name] = self.btn
+            layout.addWidget(self.tabs[name])
     
     def apply_theme(self):
         self.bg_color = self.theme.get('bg_card', '#121212')
@@ -45,44 +44,19 @@ class StatusBar(QWidget):
         self.update()
 
         #
-        self.btn1.setStyleSheet(f"""
-            QPushButton {{
+        self.setStyleSheet(f"""
+            QPushButton[class="tab"] {{
                 color: {self.text_color};
                 border: none;
                 border-radius: 3px;
                 font-size: 16px;
                 font-weight: bold;
             }}
-            QPushButton:hover {{
+            QPushButton[class="tab"]:hover {{
                 background-color: #ff555555;
             }}
         """)
         
-        self.btn2.setStyleSheet(f"""
-            QPushButton {{
-                color: {self.text_color};
-                border: none;
-                border-radius: 3px;
-                font-size: 16px;
-                font-weight: bold;
-            }}
-            QPushButton:hover {{
-                background-color: #ff555555;
-            }}
-        """)
-
-        self.btn3.setStyleSheet(f"""
-            QPushButton {{
-                color: {self.text_color};
-                border: none;
-                border-radius: 3px;
-                font-size: 16px;
-                font-weight: bold;
-            }}
-            QPushButton:hover {{
-                background-color: #ff555555;
-            }}
-        """)
     
     def paintEvent(self, event):
         if self.bg_color and self.accent_color:
