@@ -21,45 +21,8 @@ class MainWindow(QMainWindow):
         self.themes_path = os.path.join(self.base_path, 'resources', 'themes')
         self.fonts_path = os.path.join(self.base_path, 'resources', 'fonts')
 
-        self.theme_default = self.load_theme()
-
-        self.theme_default = self.theme_default or {}
-        if not self.theme_default:
-            self.theme_default = {
-                'isDark': True, 
-                'bg_dark': '#111111', 
-                'bg_card': '#121212', 
-                'accent_primary': '#202020', 
-                'accent_secondary': '#252525', 
-                'accent_light': '#7a7a7a', 
-                'text_main': '#e0e0e0', 
-                'text_muted': '#a0a0a0'
-            }
-        self.font_default = self.load_font()
-
-        self.font_default = self.font_default or {}
-        if not self.font_default:
-            self.font_default = {
-                "main": {
-                    "family": "Segoe UI",
-                    "size": 12,
-                    "weight": "normal", 
-                    "style": "normal",
-                    "line_height": 1.4,
-                    "letter_spacing": 0,
-                    "color": "#e0e0e0",
-                    "fontIsDark": False
-                },
-                "monospace": {
-                    "family": "Consolas",
-                    "size": 12,
-                    "weight": "normal",
-                    "style": "normal",
-                    "line_height": 1.2,
-                    "letter_spacing": 0,
-                    "color": "#e0e0e0"
-                }
-            }
+        self.theme_default = self.load_theme() or self.get_fallback_theme()
+        self.font_default = self.load_font() or self.get_fallback_font()
             
         self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
 
@@ -100,10 +63,11 @@ class MainWindow(QMainWindow):
     def get_fallback_theme(self):
         return {
             "isDark": True,
-            "bg_dark": "#111111",
+            "bg_color": "#111111",
             "bg_card": "#121212", 
-            "accent_primary": "#202020",
-            "accent_secondary": "#252525",
+            "accent_color": "202020",
+            "btn_bg_color": "#202020",
+            "btn_hover_bg_color": "#252525",
             "accent_light": "#7a7a7a",
             "text_main": "#e0e0e0",
             "text_muted": "#a0a0a0"

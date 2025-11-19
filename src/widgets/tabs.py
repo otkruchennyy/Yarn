@@ -103,24 +103,26 @@ class tabs(QWidget):
         self.tabs_container.setMinimumWidth(self.tabs_width + 30)
     
     def apply_theme(self):
-        self.bg_color = self.theme.get('bg_card', '#121212')
-        self.text_color = self.theme.get('text_main', '#e0e0e0')
-        self.accent_color = self.theme.get('accent_primary', '#202020')
+        self.bg_card = self.theme.get('bg_card')
+        self.bg_color = self.theme.get('bg_color')
+        self.accent_color = self.theme.get('accent_color')
+        self.text_main = self.theme.get('text_main')
+        self.btn_bg_color = self.theme.get('btn_bg_color')
+        self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
 
-        self.update()
-
+        self.update()        
         self.setStyleSheet(f"""
             QPushButton[class="tab"] {{
-                color: {self.text_color};
-                background: {self.bg_color};
+                color: {self.text_main};
+                background: transparent;
                 padding-left: 5px;
                 padding-right: 5px;
                 border: none;
                 border-radius: 3px;
                 font-weight: 600;
             }}
-            QPushButton[class="tab"]:hover {{
-                background-color: #ff555555;
+            QPushButton[class="tab"]:hover {{ 
+                background-color: #292929;
             }}
         """)
 
@@ -130,7 +132,19 @@ class tabs(QWidget):
                 border: none;
             }}
             QScrollArea::viewport {{
-                background: transparent;
+                background: {self.bg_card};
+            }}
+            QPushButton {{
+                color: {self.text_main};
+                background: {self.bg_card};
+                padding-left: 5px;
+                padding-right: 5px;
+                border: none;
+                border-radius: 3px;
+                font-weight: 600;
+            }}
+            QPushButton:hover {{
+                background: #292929;
             }}
             QScrollBar:horizontal {{
                 background: white;
@@ -147,7 +161,6 @@ class tabs(QWidget):
                 width: 0px;
             }}
         """)
-        self.tabs_container.setStyleSheet(f"background: {self.bg_color};")
         
     
     def paintEvent(self, event):
@@ -159,4 +172,10 @@ class tabs(QWidget):
             painter.drawLine(0, 0, self.width(), 0)
             
             painter.drawLine(0, self.height()-1, self.width(), self.height()-1)
+            from PySide6.QtGui import QPalette
+
+            palette = self.tabs_container.palette()
+            palette.setColor(QPalette.Window, QColor(self.bg_color))
+            self.tabs_container.setPalette(palette)
+            self.tabs_container.setAutoFillBackground(True)
         super().paintEvent(event)
