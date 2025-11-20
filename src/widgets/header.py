@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton, QSizePo
 from PySide6.QtCore import Qt, QEvent
 from PySide6.QtGui import QPainter, QColor, QPixmap
 import utils.helpers as helpers
-class CustomHeader(QWidget):
+class header(QWidget):
     def __init__(self, theme=None, parent=None):
         super().__init__(parent)
         self.bg_color = None
@@ -26,7 +26,6 @@ class CustomHeader(QWidget):
             
         elif event.type() == QEvent.MouseMove:
             if self.dragging and event.buttons() == Qt.LeftButton:
-                # Если статус True, свернуть в окно 
                 if (hasattr(self.window(), 'resize_handler') and 
                     hasattr(self.window().resize_handler, 'toggle_maximize_status') and
                     self.window().resize_handler.toggle_maximize_status and
@@ -34,24 +33,14 @@ class CustomHeader(QWidget):
                     
                     self.window().resize_handler.toggle_maximize_status = False
                     self.maximize_btn.click()
-                    
-                    # Дать окну время принять нормальный размер
                     QApplication.processEvents()
                     
                     global_pos = event.globalPos()
                     screen = self.window().screen().availableGeometry()
-                    
-                    # Вычисляение позиции по X
                     window_width = self.window().width()
                     new_x = global_pos.x() - window_width // 2
-                    
-                    # Ограничие позиции по X
                     new_x = max(screen.left(), min(new_x, screen.right() - window_width))
-                    
-                    # Y установить в 0
                     self.window().move(new_x, 0)
-                    
-                    # drag_position для продолжения перемещения
                     self.drag_position = event.globalPos() - self.window().frameGeometry().topLeft()
 
                     return True
@@ -92,7 +81,7 @@ class CustomHeader(QWidget):
         return (x <= 5 or x >= width - 5 or y <= 5)
     
     def setup_ui(self):
-        self.setObjectName("CustomHeader")
+        self.setObjectName("header")
         layout = QHBoxLayout(self)
         self.setFixedHeight(32)
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
@@ -131,14 +120,13 @@ class CustomHeader(QWidget):
         layout.addWidget(self.close_btn)
     
     def apply_theme(self):
-        self.bg_color = self.theme.get('bg_card', '#121212')
-        text_color = self.theme.get('text_main', '#e0e0e0')
-        accent_color = self.theme.get('accent_primary', '#202020')
+        self.bg_color = self.theme.get('bg_card')
+        self.text_color = self.theme.get('text_main')
 
         self.update()
 
         self.title_label.setStyleSheet(f"""
-            color: {text_color};
+            color: {self.text_color};
             font-weight: bold;
             font-size: 12px;
             background: transparent;
@@ -146,7 +134,7 @@ class CustomHeader(QWidget):
 
         self.minimize_btn.setStyleSheet(f"""
             QPushButton {{
-                color: {text_color};
+                color: {self.text_color};
                 border: none;
                 border-radius: 3px;
                 font-size: 16px;
@@ -159,7 +147,7 @@ class CustomHeader(QWidget):
         
         self.maximize_btn.setStyleSheet(f"""
             QPushButton {{
-                color: {text_color};
+                color: {self.text_color};
                 border: none;
                 border-radius: 3px;
                 font-size: 16px;
@@ -172,7 +160,7 @@ class CustomHeader(QWidget):
 
         self.close_btn.setStyleSheet(f"""
             QPushButton {{
-                color: {text_color};
+                color: {self.text_color};
                 border: none;
                 border-radius: 3px;
                 font-size: 16px;

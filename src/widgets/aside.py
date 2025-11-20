@@ -2,11 +2,12 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QLabel
 from PySide6.QtCore import Qt
 # from PySide6.QtGui import
 
-class textEditor(QWidget):
+class aside(QWidget):
     def __init__(self, parent=None, theme=None):
         super().__init__(parent)
         self.theme = theme
         self.setMouseTracking(True)
+        self.setFixedWidth(300)
         self.setup_ui()
         self.apply_theme()
     
@@ -16,7 +17,7 @@ class textEditor(QWidget):
         main_layout.setSpacing(0)
         
         self.content_frame = QFrame()
-        label = QLabel("textEditor")
+        label = QLabel("aside")
         content_layout = QVBoxLayout(self.content_frame)
         content_layout.setAlignment(Qt.AlignTop)
         content_layout.setSpacing(10)

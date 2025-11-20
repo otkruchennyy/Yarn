@@ -6,9 +6,11 @@ from PySide6.QtCore import QRect
 
 from widgets.window_resize import ResizeHandler, toggle_maximize
 import utils.helpers as helpers
-from widgets.header import CustomHeader
+from widgets.header import header
 import widgets.window_resize
 from widgets.tabs import tabs
+import widgets.aside as aside
+import widgets.text_editor as te
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -99,7 +101,7 @@ class MainWindow(QMainWindow):
     def setup_main_app(self):
         screen = QApplication.primaryScreen()
         geometry = screen.availableGeometry()
-        width, height = 400, 300
+        width, height = 900, 500
         x = (geometry.width() - width) // 2
         y = (geometry.height() - height) // 2
         self.setGeometry(x, y, width, height)
@@ -120,7 +122,7 @@ class MainWindow(QMainWindow):
 
     
     def create_widgets(self):
-        self.header = CustomHeader(theme=self.theme_default, parent=self)
+        self.header = header(theme=self.theme_default, parent=self)
         self.header.setMouseTracking(True)
         self.layout.addWidget(self.header)
         self.header.minimize_btn.clicked.connect(self.showMinimized)
@@ -133,30 +135,11 @@ class MainWindow(QMainWindow):
 
         main_content = QHBoxLayout()
     
-        self.block1 = QWidget()
-        self.block2 = QWidget()
-        self.block3 = QWidget()
-
-        self.block1.setMouseTracking(True)
-        self.block2.setMouseTracking(True)
-        self.block3.setMouseTracking(True)
-
-        self.block1_layout = QVBoxLayout(self.block1)
-        self.block2_layout = QVBoxLayout(self.block2)
-        self.block3_layout = QVBoxLayout(self.block3)
-
-        self.block1_layout.addWidget(QLabel("Блок 1"))
-        self.block1_layout.addWidget(QPushButton("Кнопка 1"))
-
-        self.block2_layout.addWidget(QLabel("Блок 2"))
-        self.block2_layout.addWidget(QTextEdit())
-
-        self.block3_layout.addWidget(QLabel("Блок 3"))
-        self.block3_layout.addWidget(QListWidget())
-
-        main_content.addWidget(self.block1)
-        main_content.addWidget(self.block2)
-        main_content.addWidget(self.block3)
+        self.aside = aside.aside(parent=self, theme=self.theme_default)
+        self.text_editor = te.textEditor(parent=self, theme=self.theme_default)
+        
+        main_content.addWidget(self.aside)
+        main_content.addWidget(self.text_editor)
         
         self.layout.addLayout(main_content)
     
