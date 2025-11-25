@@ -7,6 +7,7 @@ import os
 # from PySide6.QtGui import
 
 class aside(QWidget):
+    """Aside widget"""
     def __init__(self, parent=None, theme=None, tabs_widget=None, base_path=None):
         super().__init__(parent)
         self.theme = theme
@@ -145,10 +146,11 @@ States:
         value = (path.split('\\')[-1])[:-5]
         if current_workspaces == value: return
         if os.access(path, os.R_OK):
+
             helpers.replace_json_content(os.path.join(self.base_path, "config", "tabs_config.json"),
-                                         os.path.join(self.base_path, "workspaces", current_workspaces + '.json'))
+                                         os.path.join(self.base_path, "config", "workspaces", current_workspaces + '.json'))
             
-            helpers.add_json_property(os.path.join(self.base_path, "config", "config.json"), "current_workspaces", value, replace=True)
+            helpers.add_json_property(os.path.join(self.base_path, "config", "config.json"), "current_workspaces", value)
 
             helpers.replace_json_content(os.path.join(self.base_path, "config", "workspaces", value + '.json'),
                                          os.path.join(self.base_path, "config", "tabs_config.json"))   

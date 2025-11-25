@@ -5,6 +5,7 @@ from PySide6.QtGui import QPainter, QColor, QFont, QFontMetrics
 import utils.helpers as helpers
 
 class tabs(QWidget):
+    """Tab manager"""
     def __init__(self, theme=None, parent=None):
         super().__init__(parent)
         self.bg_color = None

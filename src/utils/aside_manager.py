@@ -1,9 +1,8 @@
-# from PySide6.QtWidgets import QWidget, QHBoxLayout, QPushButton, QSizePolicy, QScrollArea, QMessageBox
-# from PySide6.QtCore import Qt, QEvent
-# from PySide6.QtGui import QPainter, QColor, QFont, QFontMetrics
 import json
 import os
 import utils.helpers as helpers
+
+"""Button click handler for aside - manages button states and contains basic logic"""
 
 btn_config_path = os.path.join(helpers.get_project_root(), "config", "btn_settings_config.json")
 
@@ -54,9 +53,10 @@ def btn_plugins_clicked():
 
 def btn_settings_clicked():
     control_sidebar_behavior('btn_settings')
-    # _main_widget.label2.setText("Settings")
+    # _main_widget.label2.setText("Settings") load content
 
 def set_active_button(key):
+    """Keeps only one button active (set to true) among others"""
     with open(btn_config_path, "r", encoding="utf-8") as f:
         f_readfile = f.read()
         data = json.loads(f_readfile)

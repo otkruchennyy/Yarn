@@ -4,6 +4,8 @@ import json
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QLabel, QPushButton, QHBoxLayout, QFileDialog)
 from PySide6.QtCore import Qt
 
+"""The script is primarily for manipulating JSON files. Its functions are widely used"""
+
 def load_theme():
     config_path = os.path.join(get_project_root(), 'config', 'config.json')
     themes_path =os.path.join(get_project_root(), 'resources', 'themes')
@@ -26,6 +28,7 @@ def get_fallback_theme():
     }
 
 def open_file_dialog(self):
+    """Function needed to display error dialogs"""
     file_path, _ = QFileDialog.getOpenFileName(
         self, 
         "Select File",
@@ -41,12 +44,17 @@ def open_file_dialog(self):
     return None, None
 
 def get_project_root():
+    """Returns the project root folder"""
     if hasattr(sys, '_MEIPASS'):
         return os.path.dirname(sys.executable)
     else:
         return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def get_json_property(path, preference_name=""):
+    """Returns values from JSON file:
+
+    - If "preference_name" specified, returns only that key's value
+    - Otherwise returns a list"""
     try:
         with open(path, 'r', encoding='utf-8') as f:
             if preference_name == "":
@@ -60,6 +68,7 @@ def get_json_property(path, preference_name=""):
         raise RuntimeError(f"Error reading file {path}: {e}")
     
 def replace_json_content(path_from, path_to):
+    """Completely replaces contents of one JSON file with another JSON file"""
     try:
         if not os.path.exists(path_from):
             return 'error: Source file not found'
@@ -79,7 +88,8 @@ def replace_json_content(path_from, path_to):
     except Exception as e:
         return f'error: File operation error: {e}'
     
-def add_json_property(path, property, value, replace=False):
+def add_json_property(path, property, value):
+    """If "property" already exists in JSON file, replaces its value; otherwise adds "property": "value" to dictionary"""
     try:
         if not property or not isinstance(property, str):
             return 'invalid_key_name'
@@ -87,36 +97,7 @@ def add_json_property(path, property, value, replace=False):
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        if replace == True:
-            data[property] = value
-            with open(path, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=2, ensure_ascii=False)
-
-            return 'success'
-
-        if any(f'/{property}' in x for x in list(data.keys())):
-            property = value.split('/')[-2] + '/' + property
-
-        if property in data:
-            if value != data[property]:
-                if isinstance(value, str):
-                    old_value = data[property]
-                    del data[property]
-                    res = ''
-                    for j in range(1, len(old_value) + 1):
-                        if old_value[-j] == value[-j]:
-                            res += value[-j]
-                        else:
-                            break
-
-                    new_name = (value[:-len(res)]).split('/')[-1] + (res[::-1])
-                    old_name = (old_value[:-len(res)]).split('/')[-1] + (res[::-1])
-
-                    data[new_name] = value
-                    data[old_name] = old_value
-
-        else: 
-            data[property] = value
+        data[property] = value
 
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
@@ -131,6 +112,7 @@ def add_json_property(path, property, value, replace=False):
         return f'error: File operation error: {e}'
     
 def remove_json_property(path, property):
+    """Deletes key and its corresponding value from JSON file"""
     # TODO: Clean up unused tab paths after removal
     try:
         if not property or not isinstance(property, str):
@@ -186,6 +168,7 @@ def get_files_from_directory(folder_path, endswith=None):
     return current_files
 
 class ColorContrastCheckDialog(QDialog):
+    """A dialog window that appears only when the font lacks contrast against the background"""
     def __init__(self, theme_default, main_font_style, base_path, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Font Color Contrast Check")

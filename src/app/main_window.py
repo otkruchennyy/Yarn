@@ -14,6 +14,7 @@ import manifests.platform_manifests as manifests
 from utils.aside_manager import show_aside
 
 class MainWindow(QMainWindow):
+    """Launches all UI elements of the page that are separated into individual scripts"""
     def __init__(self):
         super().__init__()
         self.resize_handler = ResizeHandler(self)
