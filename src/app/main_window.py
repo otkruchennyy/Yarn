@@ -28,12 +28,11 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
 
         self.setup_main_app()
-
-        self.config_path = os.path.join(self.base_path, 'config', 'config.json')
-        self.themes_path = os.path.join(self.base_path, 'resources', 'themes')
+        self.config_path = os.path.join(helpers.get_project_root(), 'config', 'config.json')
+        self.themes_path =os.path.join(helpers.get_project_root(), 'resources', 'themes')
         self.fonts_path = os.path.join(self.base_path, 'resources', 'fonts')
 
-        self.theme_default = self.load_theme() or self.get_fallback_theme()
+        self.theme_default = helpers.load_theme()
         self.font_default = self.load_font() or self.get_fallback_font()
 
         self.create_widgets()
@@ -62,28 +61,10 @@ class MainWindow(QMainWindow):
             return
         super().mouseReleaseEvent(event)
 
-    def load_theme(self):
-        theme_name = helpers.get_json_property(self.config_path, "theme") or "default"
-        theme_file = os.path.join(self.themes_path, f"{theme_name}.json")
-        return helpers.get_json_property(theme_file) or self.get_fallback_theme()
-
     def load_font(self):
         font_name = helpers.get_json_property(self.config_path, "fonts") or "default"  
         font_file = os.path.join(self.fonts_path, f"{font_name}.json")
         return helpers.get_json_property(font_file) or self.get_fallback_font()
-
-    def get_fallback_theme(self):
-        return {
-            "isDark": True,
-            "bg_color": "#111111",
-            "bg_card": "#121212", 
-            "accent_color": "202020",
-            "btn_bg_color": "#202020",
-            "btn_hover_bg_color": "#252525",
-            "accent_light": "#7a7a7a",
-            "text_main": "#e0e0e0",
-            "text_muted": "#a0a0a0"
-        }
 
     def get_fallback_font(self):
         return {
@@ -141,7 +122,7 @@ class MainWindow(QMainWindow):
 
         main_content = QHBoxLayout()
     
-        self.aside = aside.aside(parent=self, theme=self.theme_default)
+        self.aside = aside.aside(parent=self, theme=self.theme_default, tabs_widget=self.tabs)
         self.text_editor = te.textEditor(parent=self, theme=self.theme_default)
         
         main_content.addWidget(self.aside)

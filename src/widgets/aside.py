@@ -7,9 +7,12 @@ import os
 # from PySide6.QtGui import
 
 class aside(QWidget):
-    def __init__(self, parent=None, theme=None):
+    def __init__(self, parent=None, theme=None, tabs_widget=None):
         super().__init__(parent)
         self.theme = theme
+        
+        self.tabs = tabs_widget
+
         self.setMouseTracking(True)
         self.setFixedWidth(50)
         
@@ -114,6 +117,7 @@ States:
             btn.setToolTip(f'{workspaces[name]}')
             btn.setStyleSheet("margin: 0px; padding: 0px;")
             self.widget2_layout.addWidget(btn)
+            btn.clicked.connect(lambda checked, n=name: self.on_worcspaces_clicked(workspaces[n])) 
         
         self.widget2_layout.addStretch()
         
@@ -122,6 +126,21 @@ States:
         content_layout.addWidget(self.widget2)
         
         main_layout.addWidget(self.content_frame)
+
+    def on_worcspaces_clicked(self, path):
+        """Load the file into the editor when clicking on the tab"""
+        if os.access(path, os.R_OK):
+            value = (path.split('\\')[-1])[:-5]
+            helpers.add_json_property(os.path.join(helpers.get_project_root(), "config", "config.json"), "current_workspaces", value, replace=True)
+            helpers.replace_json_content(os.path.join(helpers.get_project_root(), "config", "workspaces", value + '.json'),
+                                         os.path.join(helpers.get_project_root(), "config", "tabs_config.json"))
+            
+
+            if self.tabs:
+                self.tabs.reload_tabs()
+
+
+
 
     def apply_theme(self):
         """

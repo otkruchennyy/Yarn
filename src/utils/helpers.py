@@ -4,6 +4,27 @@ import json
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QLabel, QPushButton, QHBoxLayout, QFileDialog)
 from PySide6.QtCore import Qt
 
+def load_theme():
+    config_path = os.path.join(get_project_root(), 'config', 'config.json')
+    themes_path =os.path.join(get_project_root(), 'resources', 'themes')
+    theme_name = get_json_property(config_path, "theme") or "default"
+    theme_file = os.path.join(themes_path, f"{theme_name}.json")
+    return get_json_property(theme_file) or get_fallback_theme()
+
+def get_fallback_theme():
+    return {
+        "isDark": True,
+        "bg_color": "#111111", 
+        "bg_card": "#121212", 
+        "accent_color": "202020",
+        "accent_primary": "#FFB300",
+        "btn_bg_color": "#202020",
+        "btn_hover_bg_color": "#292929",
+        "accent_light": "#7a7a7a",
+        "text_main": "#e0e0e0",
+        "text_muted": "#a0a0a0"
+    }
+
 def open_file_dialog(self):
     file_path, _ = QFileDialog.getOpenFileName(
         self, 
@@ -38,13 +59,40 @@ def get_json_property(path, preference_name=""):
     except Exception as e:
         raise RuntimeError(f"Error reading file {path}: {e}")
     
-def add_json_property(path, property, value):
+def replace_json_content(path_from, path_to):
+    try:
+        if not os.path.exists(path_from):
+            return 'error: Source file not found'
+        
+        with open(path_from, 'r', encoding='utf-8') as source_file:
+            data_to_copy = json.load(source_file)
+        
+        with open(path_to, 'w', encoding='utf-8') as target_file:
+            json.dump(data_to_copy, target_file, indent=2, ensure_ascii=False)
+        
+        return 'success'
+    
+    except FileNotFoundError:
+        return 'error: JSON file not found'
+    except json.JSONDecodeError as e:
+        return f'error: JSON parsing error: {e}'
+    except Exception as e:
+        return f'error: File operation error: {e}'
+    
+def add_json_property(path, property, value, replace=False):
     try:
         if not property or not isinstance(property, str):
             return 'invalid_key_name'
-
+        
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
+
+        if replace == True:
+            data[property] = value
+            with open(path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+
+            return 'success'
 
         if any(f'/{property}' in x for x in list(data.keys())):
             property = value.split('/')[-2] + '/' + property

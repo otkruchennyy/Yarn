@@ -105,7 +105,7 @@ class tabs(QWidget):
         self.reload_tabs()
         
 
-    def reload_tabs(self, file_name=None, directory=None):
+    def reload_tabs(self):
         for i in reversed(range(self.tabs_layout.count())):
             widget = self.tabs_layout.itemAt(i).widget()
             if widget:
