@@ -122,7 +122,7 @@ class MainWindow(QMainWindow):
 
         main_content = QHBoxLayout()
     
-        self.aside = aside.aside(parent=self, theme=self.theme_default, tabs_widget=self.tabs)
+        self.aside = aside.aside(parent=self, theme=self.theme_default, tabs_widget=self.tabs, base_path=self.base_path)
         self.text_editor = te.textEditor(parent=self, theme=self.theme_default)
         
         main_content.addWidget(self.aside)

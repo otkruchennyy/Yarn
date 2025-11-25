@@ -68,7 +68,7 @@ class tabs(QWidget):
         # TODO: load file
         file_name, directory = helpers.open_file_dialog(self)
         helpers.add_json_property(self.path_tabs, file_name, directory)
-        self.reload_tabs(file_name, directory)
+        self.reload_tabs()
 
     def check_file_access(self, path):
         """except file load"""

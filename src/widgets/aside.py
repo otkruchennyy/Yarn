@@ -1,15 +1,16 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QFrame, QLabel, QPushButton
-from PySide6.QtCore import Qt, QEvent
-from PySide6.QtGui import QPainter, QColor, QFont, QFontMetrics
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QFont
 import utils.helpers as helpers
 import utils.aside_manager as al
 import os
 # from PySide6.QtGui import
 
 class aside(QWidget):
-    def __init__(self, parent=None, theme=None, tabs_widget=None):
+    def __init__(self, parent=None, theme=None, tabs_widget=None, base_path=None):
         super().__init__(parent)
         self.theme = theme
+        self.base_path = base_path
         
         self.tabs = tabs_widget
 
@@ -23,7 +24,7 @@ class aside(QWidget):
         
         self.setup_ui()
         self.apply_theme()
-        self.btn_toggle.clicked.connect(al.aside_state)
+        self.reload_workspaces()
     
     def setup_ui(self):
         """
@@ -69,24 +70,31 @@ States:
 
         # left control panel
         self.widget1.setFixedWidth(50)
+
         self.btn_toggle = QPushButton(">>")
         self.btn_toggle.setToolTip("Aside panel")
+        self.btn_toggle.clicked.connect(al.aside_state)
+        self.btn_toggle.setProperty("class", "workspaces")
 
         self.btn_workspaces = QPushButton("🗂")
         self.btn_workspaces.setToolTip("Workspaces")
         self.btn_workspaces.clicked.connect(al.btn_workspaces_clicked)
+        self.btn_workspaces.setProperty("class", "workspaces")
 
         self.btn_tools = QPushButton("🛠") 
         self.btn_tools.setToolTip("Tools")
         self.btn_tools.clicked.connect(al.btn_tools_clicked)
+        self.btn_tools.setProperty("class", "workspaces")
 
         self.btn_plugins = QPushButton("🧩")
         self.btn_plugins.setToolTip("Plugins")
         self.btn_plugins.clicked.connect(al.btn_plugins_clicked)
+        self.btn_plugins.setProperty("class", "workspaces")
 
         self.btn_settings = QPushButton("⚙")
         self.btn_settings.setToolTip("Settings")
         self.btn_settings.clicked.connect(al.btn_settings_clicked)
+        self.btn_settings.setProperty("class", "workspaces")
         
         widget1_layout = QVBoxLayout(self.widget1)
         widget1_layout.setAlignment(Qt.AlignTop)
@@ -105,19 +113,23 @@ States:
         self.widget2_layout.setAlignment(Qt.AlignTop)
 
         # Workspaces
-        workspaces_path = os.path.join(helpers.get_project_root(), "config", "workspaces")
+        workspaces_path = os.path.join(self.base_path, "config", "workspaces")
         workspaces = helpers.get_files_from_directory(workspaces_path, 'json')
         font = QFont("Monospace", 10) # TODO: get font from property
+
+        self.workspaces_btn = {}
+
         for name in workspaces:
             btn = QPushButton(name)
             btn.setFixedSize(200, 18)
             btn.setCursor(Qt.PointingHandCursor)
-            btn.setProperty("class", "tab")
+            btn.setProperty("class", "workspaces")
             btn.setFont(font)
             btn.setToolTip(f'{workspaces[name]}')
             btn.setStyleSheet("margin: 0px; padding: 0px;")
+            btn.clicked.connect(lambda checked, n=name: self.on_workspaces_clicked(workspaces[n], name)) 
+            self.workspaces_btn[name]= btn
             self.widget2_layout.addWidget(btn)
-            btn.clicked.connect(lambda checked, n=name: self.on_worcspaces_clicked(workspaces[n])) 
         
         self.widget2_layout.addStretch()
         
@@ -127,18 +139,65 @@ States:
         
         main_layout.addWidget(self.content_frame)
 
-    def on_worcspaces_clicked(self, path):
+    def on_workspaces_clicked(self, path, name_btn):
         """Load the file into the editor when clicking on the tab"""
+        current_workspaces = helpers.get_json_property(os.path.join(self.base_path, "config", "config.json"), "current_workspaces")
+        value = (path.split('\\')[-1])[:-5]
+        if current_workspaces == value: return
         if os.access(path, os.R_OK):
-            value = (path.split('\\')[-1])[:-5]
-            helpers.add_json_property(os.path.join(helpers.get_project_root(), "config", "config.json"), "current_workspaces", value, replace=True)
-            helpers.replace_json_content(os.path.join(helpers.get_project_root(), "config", "workspaces", value + '.json'),
-                                         os.path.join(helpers.get_project_root(), "config", "tabs_config.json"))
+            helpers.replace_json_content(os.path.join(self.base_path, "config", "tabs_config.json"),
+                                         os.path.join(self.base_path, "workspaces", current_workspaces + '.json'))
             
+            helpers.add_json_property(os.path.join(self.base_path, "config", "config.json"), "current_workspaces", value, replace=True)
 
+            helpers.replace_json_content(os.path.join(self.base_path, "config", "workspaces", value + '.json'),
+                                         os.path.join(self.base_path, "config", "tabs_config.json"))   
+             
             if self.tabs:
                 self.tabs.reload_tabs()
 
+            self.reload_workspaces()
+
+    def reload_workspaces(self):
+        """reload style buttons"""
+        for btn in self.workspaces_btn.values():
+            btn.deleteLater()
+        self.workspaces_btn.clear()
+        
+        # cleaning layout
+        while self.widget2_layout.count():
+            child = self.widget2_layout.takeAt(0)
+            if child.widget():
+                child.widget().deleteLater()
+        
+        # create button
+        workspaces_path = os.path.join(self.base_path, "config", "workspaces")
+        workspaces = helpers.get_files_from_directory(workspaces_path, 'json')
+        font = QFont("Monospace", 10)
+        current_workspace = helpers.get_json_property(
+            os.path.join(self.base_path, "config", "config.json"), 
+            "current_workspaces"
+        )
+
+        for name in workspaces:
+            btn = QPushButton(name)
+            btn.setFixedSize(200, 18)
+            btn.setCursor(Qt.PointingHandCursor)
+            btn.setFont(font)
+            btn.setToolTip(f'{workspaces[name]}')
+            btn.setStyleSheet("margin: 0px; padding: 0px;")
+            btn.clicked.connect(lambda checked, n=name: self.on_workspaces_clicked(workspaces[n], n))
+            
+            # set style for buttons
+            if name == current_workspace:
+                btn.setProperty("class", "active_workspaces")
+            else:
+                btn.setProperty("class", "workspaces")
+            
+            self.workspaces_btn[name] = btn
+            self.widget2_layout.addWidget(btn)
+        
+        self.widget2_layout.addStretch()
 
 
 
@@ -167,7 +226,7 @@ States:
     
     # Apply button styling to content frame
         self.content_frame.setStyleSheet(f"""
-            QPushButton {{
+            QPushButton[class="workspaces"]{{
                 background-color: {self.btn_bg_color};
                 color: {self.text_main};
                 border: 1px solid {self.accent_color};
@@ -175,12 +234,16 @@ States:
                 border-radius: 3px;
             }}
             
-            QPushButton:hover {{
+            QPushButton[class="workspaces"]:hover {{
                 background-color: {self.btn_hover_bg_color};
                 border: 1px solid {self.accent_primary};
             }}
             
-            QPushButton:pressed {{
+            QPushButton[class="workspaces"]:pressed {{
+                background-color: {self.accent_primary};
+                color: {self.accent_color}
+            }}
+            QPushButton[class="active_workspaces"] {{
                 background-color: {self.accent_primary};
                 color: {self.accent_color}
             }}
