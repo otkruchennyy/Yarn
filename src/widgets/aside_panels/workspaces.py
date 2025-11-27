@@ -5,13 +5,15 @@ import os
 import utils.helpers as helpers
 
 class WorkspacesPanel(QWidget):
-    def __init__(self, base_path, tabs_manager):
+    def __init__(self, base_path, tabs_manager, theme):
         super().__init__()
+        self.theme = theme
         self.base_path = base_path
         self.tabs = tabs_manager
         self.workspaces_btn = {}
         self.setup_ui()
         self.load_workspaces()
+        self.apply_theme()
 
     def setup_ui(self):
         self.layout = QVBoxLayout()
@@ -23,7 +25,7 @@ class WorkspacesPanel(QWidget):
         """Loading workspaces"""
         workspaces_path = os.path.join(self.base_path, "config", "workspaces")
         workspaces = helpers.get_files_from_directory(workspaces_path, 'json')
-        font = QFont("Segoe UI", 12)
+        font = QFont("Segoe UI", 10) # TODO: current font
 
         for name in workspaces:
             btn = QPushButton(name)
@@ -120,12 +122,15 @@ class WorkspacesPanel(QWidget):
         """
         # Extract theme colors
         self.bg_card = self.theme.get('bg_card')
+        self.bg_card = self.theme.get('bg_card')
         self.bg_color = self.theme.get('bg_color')
         self.accent_color = self.theme.get('accent_color')
         self.accent_primary = self.theme.get('accent_primary')
         self.text_main = self.theme.get('text_main')
         self.btn_bg_color = self.theme.get('btn_bg_color')
+        self.accent_light = self.theme.get('accent_light')
         self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
+        self.text_muted = self.theme.get('text_muted')
 
         # Refresh UI
         self.update()
@@ -136,28 +141,27 @@ class WorkspacesPanel(QWidget):
                 color: {self.text_main};
             """)
     
-    # Apply button styling to content frame
-        self.content_frame.setStyleSheet(f"""
+        # Apply button styling to content frame
+        self.setStyleSheet(f"""
             QPushButton[class="workspaces"]{{
-                background-color: {self.btn_bg_color};
-                color: {self.text_main};
-                border: 1px solid {self.accent_color};
+                background-color: {self.bg_color};
+                color: {self.text_muted};
                 padding: 5px;
                 border-radius: 3px;
             }}
             
             QPushButton[class="workspaces"]:hover {{
-                background-color: {self.btn_hover_bg_color};
-                border: 1px solid {self.accent_primary};
+                color: {self.text_muted};
             }}
             
             QPushButton[class="workspaces"]:pressed {{
-                background-color: {self.accent_primary};
-                color: {self.accent_color}
+                background-color: {self.btn_hover_bg_color};
+                color: {self.text_muted};
             }}
             QPushButton[class="active_workspaces"] {{
-                background-color: {self.accent_primary};
-                color: {self.accent_color}
+                background-color: {self.bg_card};
+                border: 1px solid {self.accent_light};
+                color: {self.text_main};
             }}
             QToolTip {{
                 background-color: #2b2b2b;

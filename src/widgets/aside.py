@@ -33,11 +33,11 @@ class aside(QWidget):
     def create_panels(self):
         """Create and register all content panels"""
         # Workspaces panel
-        self.workspaces_panel = WorkspacesPanel(self.base_path, self.tabs)
+        self.workspaces_panel = WorkspacesPanel(self.base_path, self.tabs, self.theme)
         al.register_panel('workspaces', self.workspaces_panel)
         
         # Tools panel
-        self.tools_panel = ToolsPanel(self.base_path)
+        self.tools_panel = ToolsPanel(self.base_path, self.theme)
         al.register_panel('tools', self.tools_panel)
         
         # Plugins panel 
