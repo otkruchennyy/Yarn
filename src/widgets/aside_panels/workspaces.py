@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel
 from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt
 import os
@@ -10,9 +10,10 @@ class WorkspacesPanel(QWidget):
         self.theme = theme
         self.base_path = base_path
         self.tabs = tabs_manager
-        self.workspaces_btn = {}
+        self.workspaces_widgets = {}
+        self.workspaces_path = os.path.join(self.base_path, "config", "workspaces")
+        self.workspaces = helpers.get_files_from_directory(self.workspaces_path, 'json')
         self.setup_ui()
-        self.load_workspaces()
         self.apply_theme()
 
     def setup_ui(self):
@@ -21,20 +22,24 @@ class WorkspacesPanel(QWidget):
         self.layout.setSpacing(0)
         self.setLayout(self.layout)
 
+        self.load_workspaces()
+
     def load_workspaces(self):
         """Loading workspaces"""
-        workspaces_path = os.path.join(self.base_path, "config", "workspaces")
-        workspaces = helpers.get_files_from_directory(workspaces_path, 'json')
         font = QFont("Segoe UI", 10) # TODO: current font
 
-        for name in workspaces:
+        name_property = QLabel("workspaces")
+        self.layout.addWidget(name_property)
+        self.workspaces_widgets["name_property"] = name_property
+
+        for name in self.workspaces:
             btn = QPushButton(name)
             btn.setFixedSize(200, 30)
             btn.setCursor(Qt.CursorShape.PointingHandCursor)
             btn.setFont(font)
-            btn.setToolTip(f'{workspaces[name]}')
+            btn.setToolTip(f'{self.workspaces[name]}')
             btn.setStyleSheet("margin: 2px; padding: 0px;")
-            btn.clicked.connect(lambda checked, n=name: self.on_workspaces_clicked(workspaces[n], n))
+            btn.clicked.connect(lambda checked, n=name: self.on_workspaces_clicked(self.workspaces[n], n))
             
             # set button style
             current_workspace = helpers.get_json_property(
@@ -46,7 +51,7 @@ class WorkspacesPanel(QWidget):
             else:
                 btn.setProperty("class", "workspaces")
             
-            self.workspaces_btn[name] = btn
+            self.workspaces_widgets[name] = btn
             self.layout.addWidget(btn)
         
         self.layout.addStretch()
@@ -91,10 +96,10 @@ class WorkspacesPanel(QWidget):
 
     def reload_workspaces(self):
         """Reload panel workspaces"""
-        # Delite all buttons
-        for btn in self.workspaces_btn.values():
-            btn.deleteLater()
-        self.workspaces_btn.clear()
+        # Delite all widgets
+        for widget in self.workspaces_widgets.values():
+            widget.deleteLater()
+        self.workspaces_widgets.clear()
         
         # Cleaning layout
         while self.layout.count():

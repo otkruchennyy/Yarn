@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel
 from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt
 import os
@@ -9,6 +9,7 @@ class ToolsPanel(QWidget):
         super().__init__()
         self.theme = theme
         self.base_path = base_path
+        self.tools_widgets = {}
         self.setup_ui()
         self.apply_theme()
 
@@ -17,40 +18,34 @@ class ToolsPanel(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.setSpacing(0)
         self.setLayout(self.layout)
-        font = QFont("Segoe UI", 10) # TODO: current font
+        self.font = QFont("Segoe UI", 10) # TODO: current font
+        
+        name_property = QLabel("tools")
+        self.layout.addWidget(name_property)
+        self.tools_widgets["name_property"] = name_property
 
-        email_btn = QPushButton("Search emails")
-        email_btn.setFixedSize(246, 30)
-        email_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        email_btn.setFont(font)
-        email_btn.setProperty("class", "tool")
-        email_btn.setToolTip("Search for email addresses in the document")
-        email_btn.setStyleSheet("margin: 2px; padding: 0px;")
-        # btn.clicked.connect()
-        self.layout.addWidget(email_btn)
-
-        url_btn = QPushButton("Extract URLs")
-        url_btn.setFixedSize(246, 30)
-        url_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        url_btn.setFont(font)
-        url_btn.setProperty("class", "tool")
-        url_btn.setToolTip("Find and extract all web links from the document")
-        url_btn.setStyleSheet("margin: 2px; padding: 0px;")
-        # btn.clicked.connect()
-        self.layout.addWidget(url_btn)
-
-        phone_btn = QPushButton("Find Phone Numbers")
-        phone_btn.setFixedSize(246, 30)
-        phone_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        phone_btn.setFont(font)
-        phone_btn.setProperty("class", "tool")
-        phone_btn.setToolTip("Search for phone numbers in various formats")
-        phone_btn.setStyleSheet("margin: 2px; padding: 0px;")
-        # btn.clicked.connect()
-        self.layout.addWidget(phone_btn)
-
+        self.add_btn("Search emails", "Search for email addresses in the document")
+        self.add_btn("Extract URLs", "Find and extract all web links from the document")
+        self.add_btn("Find Phone Numbers", "Search for phone numbers in various formats")
         
         self.layout.addStretch()
+
+    def add_btn(self, name, tooltip_text=None, connect=None):
+        try:
+            btn = QPushButton(name)
+            btn.setFixedSize(246, 30)
+            btn.setCursor(Qt.CursorShape.PointingHandCursor)
+            btn.setFont(self.font)
+            btn.setProperty("class", "tool")
+            if isinstance(tooltip_text, str) and tooltip_text.strip():
+                btn.setToolTip(tooltip_text)
+            btn.setStyleSheet("margin: 2px; padding: 0px;")
+            # btn.clicked.connect(connect)
+            self.layout.addWidget(btn)
+            self.tools_widgets[name] = btn
+        
+        except TypeError: print("TypeError: invalid name")
+        except: print(f'no function named {connect}') # TODO: Implement an error counter in the widget
 
     def on_tools_clicked(self, path, name_btn):
         """Tools click handler"""
@@ -59,17 +54,15 @@ class ToolsPanel(QWidget):
         self.reload_tools()
 
     def reload_tools(self):
-        """Reload panel tools"""
-        # Delite all
-        # TODO: delete widgets
+        for widget in self.tools_widgets.values():
+            widget.deleteLater()
+        self.tools_widgets.clear()
+        
         # Cleaning layout
         while self.layout.count():
             child = self.layout.takeAt(0)
             if child.widget():
                 child.widget().deleteLater()
-        
-        # Reload
-        # self.load_tools()
 
     def show_panel(self):
         self.show()

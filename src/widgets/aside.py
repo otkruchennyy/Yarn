@@ -41,11 +41,11 @@ class aside(QWidget):
         al.register_panel('tools', self.tools_panel)
         
         # Plugins panel 
-        self.plugins_panel = PluginsPanel(self.base_path)
+        self.plugins_panel = PluginsPanel(self.base_path, self.theme)
         al.register_panel('plugins', self.plugins_panel)
         
         # Settings panel
-        self.settings_panel = SettingsPanel(self.base_path)
+        self.settings_panel = SettingsPanel(self.base_path, self.theme)
         al.register_panel('settings', self.settings_panel)
     
     def setup_ui(self):
