@@ -2,7 +2,9 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QFrame, QPushBu
 from PySide6.QtCore import Qt
 import utils.helpers as helpers
 import utils.aside_manager as al
+import services.logging as log
 import os
+from widgets.aside_panels.logs import LogsPanel
 from widgets.aside_panels.tools import ToolsPanel
 from widgets.aside_panels.plugins import PluginsPanel  
 from widgets.aside_panels.settings import SettingsPanel
@@ -47,6 +49,9 @@ class aside(QWidget):
         # Settings panel
         self.settings_panel = SettingsPanel(self.base_path, self.theme)
         al.register_panel('settings', self.settings_panel)
+
+        self.logs_panel = LogsPanel(self.base_path, self.theme)
+        al.register_panel('logs', self.logs_panel)
     
     def setup_ui(self):
         """
@@ -96,27 +101,32 @@ States:
         self.btn_toggle = QPushButton(">>")
         self.btn_toggle.setToolTip("Aside panel")
         self.btn_toggle.clicked.connect(al.aside_state)
-        self.btn_toggle.setProperty("class", "workspaces")
+        self.btn_toggle.setProperty("class", "main")
 
-        self.btn_workspaces = QPushButton("🗂")
+        self.btn_workspaces = QPushButton("🗂") # TODO: replace emoji with img
         self.btn_workspaces.setToolTip("Workspaces")
         self.btn_workspaces.clicked.connect(al.btn_workspaces_clicked)
-        self.btn_workspaces.setProperty("class", "workspaces")
+        self.btn_workspaces.setProperty("class", "main")
 
-        self.btn_tools = QPushButton("🛠") 
+        self.btn_tools = QPushButton("🛠") # TODO: replace emoji with img
         self.btn_tools.setToolTip("Tools")
         self.btn_tools.clicked.connect(al.btn_tools_clicked)
-        self.btn_tools.setProperty("class", "workspaces")
+        self.btn_tools.setProperty("class", "main")
 
-        self.btn_plugins = QPushButton("🧩")
+        self.btn_plugins = QPushButton("🧩") # TODO: replace emoji with img
         self.btn_plugins.setToolTip("Plugins")
         self.btn_plugins.clicked.connect(al.btn_plugins_clicked)
-        self.btn_plugins.setProperty("class", "workspaces")
+        self.btn_plugins.setProperty("class", "main")
 
-        self.btn_settings = QPushButton("⚙")
+        self.btn_settings = QPushButton("⚙") # TODO: replace emoji with img
         self.btn_settings.setToolTip("Settings")
         self.btn_settings.clicked.connect(al.btn_settings_clicked)
-        self.btn_settings.setProperty("class", "workspaces")
+        self.btn_settings.setProperty("class", "main")
+
+        self.btn_logs = QPushButton("📋") # TODO: replace emoji with img
+        self.btn_logs.setToolTip("View logs")
+        self.btn_logs.clicked.connect(al.btn_logs_clicked)
+        self.btn_logs.setProperty("class", "secondary")
         
         widget1_layout = QVBoxLayout(self.widget1)
         widget1_layout.setAlignment(Qt.AlignTop)
@@ -126,6 +136,7 @@ States:
         widget1_layout.addWidget(self.btn_plugins)
         widget1_layout.addWidget(self.btn_settings)
         widget1_layout.addStretch()
+        widget1_layout.addWidget(self.btn_logs)
         
         # Right side panel 
         self.widget2.hide()
@@ -139,11 +150,13 @@ States:
         self.widget2_layout.addWidget(self.tools_panel)
         self.widget2_layout.addWidget(self.plugins_panel)
         self.widget2_layout.addWidget(self.settings_panel)
+        self.widget2_layout.addWidget(self.logs_panel)
         
         self.workspaces_panel.hide()
         self.tools_panel.hide()
         self.plugins_panel.hide()
         self.settings_panel.hide()
+        self.logs_panel.hide()
         
         # add_widgets_to_main_layout 
         content_layout.addWidget(self.widget1)
@@ -177,7 +190,7 @@ States:
     
     # Apply button styling to content frame
         self.content_frame.setStyleSheet(f"""
-            QPushButton[class="workspaces"]{{
+            QPushButton[class="main"]{{
                 background-color: {self.btn_bg_color};
                 color: {self.text_main};
                 border: 1px solid {self.accent_color};
@@ -185,16 +198,31 @@ States:
                 border-radius: 3px;
             }}
             
-            QPushButton[class="workspaces"]:hover {{
+            QPushButton[class="main"]:hover {{
                 background-color: {self.btn_hover_bg_color};
                 border: 1px solid {self.accent_primary};
             }}
             
-            QPushButton[class="workspaces"]:pressed {{
+            QPushButton[class="main"]:pressed {{
                 background-color: {self.accent_primary};
                 color: {self.accent_color}
             }}
-            QPushButton[class="active_workspaces"] {{
+            QPushButton[class="active_main"] {{
+                background-color: {self.accent_primary};
+                color: {self.accent_color}
+            }}
+            QPushButton[class="secondary"]{{
+                background-color: transparent;
+                color: {self.text_main};
+                border: 1px solid {self.accent_color};
+                padding: 5px;
+                border-radius: 3px;
+            }}
+            QPushButton[class="secondary"]:hover{{
+                background-color: {self.btn_hover_bg_color};
+                border: 1px solid {self.accent_primary};
+            }}
+            QPushButton[class="secondary"]:pressed{{
                 background-color: {self.accent_primary};
                 color: {self.accent_color}
             }}

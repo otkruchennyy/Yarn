@@ -1,6 +1,7 @@
 import json
 import os
 import utils.helpers as helpers
+import services.logging as log
 
 """Button click handler for aside - manages button states and contains basic logic"""
 
@@ -53,8 +54,10 @@ def _get_panel_name_by_button(button_name):
         'btn_workspaces': 'workspaces',
         'btn_tools': 'tools', 
         'btn_plugins': 'plugins',
-        'btn_settings': 'settings'
+        'btn_settings': 'settings',
+        'btn_logs': 'logs'
     }
+    log.debug('btn_' + panel_mapping.get(button_name) + ' clicked', 5)
     return panel_mapping.get(button_name)
 
 def aside_state():
@@ -115,6 +118,9 @@ def btn_settings_clicked():
     """Handle settings button click"""
     control_sidebar_behavior('btn_settings')
 
+def btn_logs_clicked():
+    """Handle logs button click"""
+    control_sidebar_behavior('btn_logs')
 
 def set_active_button(key):
     """Keeps only one button active (set to true) among others"""
@@ -131,15 +137,12 @@ def set_active_button(key):
                     hide_aside()
                 else:
                     data[keyName] = not data[keyName]
-                save_config(btn_config_path, data)
             else:
                 show_aside()
                 data['aside_is_open'] = not data['aside_is_open']
-                save_config(btn_config_path, data)
         else:
             data[keyName] = False
-
-        save_config(btn_config_path, data)
+    save_config(btn_config_path, data)
 
 
 def save_config(path, data):

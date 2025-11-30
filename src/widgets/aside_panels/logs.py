@@ -1,15 +1,15 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel
-from PySide6.QtGui import QFont
-from PySide6.QtCore import Qt
-import os
-import utils.helpers as helpers
+# from PySide6.QtGui import QFont
+# from PySide6.QtCore import Qt
+# import os
+# import utils.helpers as helpers
 
-class PluginsPanel(QWidget):
+class LogsPanel(QWidget):
     def __init__(self, base_path, theme):
         super().__init__()
         self.base_path = base_path
         self.theme = theme
-        self.plugins_widgets = {}
+        self.logs_widgets = {}
         self.setup_ui()
         self.apply_theme()
 
@@ -18,28 +18,27 @@ class PluginsPanel(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.setSpacing(0)
         self.setLayout(self.layout)
-        self.font = QFont("Segoe UI", 10) # TODO: current font
 
-        self.load_plugins()
+        self.load_logs()
 
         self.layout.addStretch()
 
-    def load_plugins(self):
-        name_property = QLabel("plugins")
+    def load_logs(self):
+        name_property = QLabel("logs")
         self.layout.addWidget(name_property)
-        self.plugins_widgets["name_property"] = name_property
+        self.logs_widgets["name_property"] = name_property
 
-    def on_plugins_clicked(self, path, name_btn):
-        """Plugins click handler"""
+    def on_logs_clicked(self, path, name_btn):
+        """logs click handler"""
 
-        self.reload_plugins()
-
-    def reload_plugins(self):
-        """Reload panel plugins"""
+        self.reload_logs()
+    
+    def reload_logs(self):
+        """Reload panel logs"""
         # Delite all widgets
-        for widget in self.plugins_widgets.values():
+        for widget in self.logs_widgets.values():
             widget.deleteLater()
-        self.plugins_widgets.clear()
+        self.logs_widgets.clear()
         
         # Cleaning layout
         while self.layout.count():
@@ -52,6 +51,10 @@ class PluginsPanel(QWidget):
 
     def hide_panel(self):
         self.hide()
+
+    def toggle_panel(self):
+        """Toggle panel visibility"""
+        self.setVisible(not self.isVisible())
     
     def apply_theme(self):
         """

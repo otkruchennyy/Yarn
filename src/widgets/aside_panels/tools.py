@@ -54,6 +54,8 @@ class ToolsPanel(QWidget):
         self.reload_tools()
 
     def reload_tools(self):
+        """Reload panel plugins"""
+        # Delite all widgets
         for widget in self.tools_widgets.values():
             widget.deleteLater()
         self.tools_widgets.clear()
