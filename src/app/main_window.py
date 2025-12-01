@@ -123,8 +123,6 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(self.tabs)
 
         main_content = QHBoxLayout()
-    
-        self.aside = aside.aside(parent=self, theme=self.theme_default, tabs_widget=self.tabs, base_path=self.base_path)
 
         self.right_panel = QWidget()
         right_layout = QVBoxLayout(self.right_panel)
@@ -135,6 +133,8 @@ class MainWindow(QMainWindow):
         self.extra_panel = ExtraPanel(parent=self, theme=self.theme_default)
         right_layout.addWidget(self.text_editor)
         right_layout.addWidget(self.extra_panel)
+
+        self.aside = aside.aside(parent=self, theme=self.theme_default, tabs_widget=self.tabs, base_path=self.base_path)
         
         main_content.addWidget(self.aside)
         main_content.addWidget(self.right_panel)

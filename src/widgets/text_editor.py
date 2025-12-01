@@ -26,11 +26,24 @@ class textEditor(QWidget):
         main_layout.addWidget(self.content_frame)
 
     def apply_theme(self):
-        self.bg_color = self.theme.get('bg_card')
-        self.text_color = self.theme.get('text_main')
+        self.bg_card = self.theme.get('bg_card')
+        self.bg_color = self.theme.get('bg_color')
+        self.accent_color = self.theme.get('accent_color')
+        self.accent_primary = self.theme.get('accent_primary')
+        self.text_main = self.theme.get('text_main')
+        self.btn_bg_color = self.theme.get('btn_bg_color')
+        self.accent_light = self.theme.get('accent_light')
+        self.accent_gray = self.theme.get('accent_gray')
+        self.text_muted = self.theme.get('text_muted')
         
-        self.setStyleSheet("""
-            background-color: %s; 
-            color: %s;
-            border: 1px solid #444;
-        """ % (self.bg_color, self.text_color))
+        self.setStyleSheet(f"""
+            QWidget {{
+                background-color: {self.bg_card};
+                border: 1px solid {self.accent_gray};
+                border-width: 0 1px;
+                color: {self.text_main}
+            }}
+            QLabel {{
+                border: None
+            }}
+        """)

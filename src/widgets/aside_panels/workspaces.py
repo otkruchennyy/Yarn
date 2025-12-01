@@ -134,7 +134,7 @@ class WorkspacesPanel(QWidget):
         self.text_main = self.theme.get('text_main')
         self.btn_bg_color = self.theme.get('btn_bg_color')
         self.accent_light = self.theme.get('accent_light')
-        self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
+        self.accent_gray = self.theme.get('accent_gray')
         self.text_muted = self.theme.get('text_muted')
 
         # Refresh UI
@@ -149,7 +149,7 @@ class WorkspacesPanel(QWidget):
         # Apply button styling to content frame
         self.setStyleSheet(f"""
             QPushButton[class="workspaces"]{{
-                background-color: {self.bg_color};
+                background-color: {self.btn_bg_color};
                 color: {self.text_muted};
                 padding: 5px;
                 border-radius: 3px;
@@ -160,7 +160,7 @@ class WorkspacesPanel(QWidget):
             }}
             
             QPushButton[class="workspaces"]:pressed {{
-                background-color: {self.btn_hover_bg_color};
+                background-color: {self.accent_gray};
                 color: {self.text_muted};
             }}
             QPushButton[class="active_workspaces"] {{

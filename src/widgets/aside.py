@@ -7,6 +7,7 @@ from widgets.aside_panels.tools import ToolsPanel
 from widgets.aside_panels.plugins import PluginsPanel  
 from widgets.aside_panels.settings import SettingsPanel
 from widgets.aside_panels.workspaces import WorkspacesPanel
+from widgets.extra_panels.extra_panels_manager import ExtraPanel
 
 class aside(QWidget):
     """Aside widget"""
@@ -175,7 +176,7 @@ States:
         self.accent_primary = self.theme.get('accent_primary')
         self.text_main = self.theme.get('text_main')
         self.btn_bg_color = self.theme.get('btn_bg_color')
-        self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
+        self.accent_gray = self.theme.get('accent_gray')
 
         # Refresh UI
         self.update()
@@ -197,7 +198,7 @@ States:
             }}
             
             QPushButton[class="main"]:hover {{
-                background-color: {self.btn_hover_bg_color};
+                background-color: {self.accent_gray};
                 border: 1px solid {self.accent_primary};
             }}
             
@@ -217,7 +218,7 @@ States:
                 border-radius: 3px;
             }}
             QPushButton[class="secondary"]:hover{{
-                background-color: {self.btn_hover_bg_color};
+                background-color: {self.accent_gray};
                 border: 1px solid {self.accent_primary};
             }}
             QPushButton[class="secondary"]:pressed{{

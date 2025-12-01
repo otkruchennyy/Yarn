@@ -85,7 +85,7 @@ class ToolsPanel(QWidget):
         self.text_main = self.theme.get('text_main')
         self.btn_bg_color = self.theme.get('btn_bg_color')
         self.accent_light = self.theme.get('accent_light')
-        self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
+        self.accent_gray = self.theme.get('accent_gray')
         self.text_muted = self.theme.get('text_muted')
 
         # Refresh UI
@@ -93,19 +93,19 @@ class ToolsPanel(QWidget):
 
         self.setStyleSheet(f"""
             QPushButton[class="tool"]{{
-                background-color: {self.bg_color};
+                background-color: {self.btn_bg_color};
                 color: {self.text_main};
                 padding: 5px;
                 border-radius: 3px;
             }}
             
             QPushButton[class="tool"]:hover {{
-                background-color: {self.btn_hover_bg_color};
+                background-color: {self.accent_gray};
                 color: {self.text_main};
             }}
             
             QPushButton[class="tool"]:pressed {{
-                background-color: {self.btn_hover_bg_color};
+                background-color: {self.accent_gray};
                 color: {self.text_main};
             }}
             QPushButton[class="active_tool"] {{

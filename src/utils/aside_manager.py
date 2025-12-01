@@ -116,7 +116,7 @@ def btn_settings_clicked():
 
 def btn_logs_clicked():
     """Handle logs button click"""
-    pass # TODO: call extra_widget
+    pass
 
 def set_active_button(key):
     """Keeps only one button active (set to true) among others"""

@@ -73,7 +73,7 @@ class LogsPanel(QWidget):
         self.text_main = self.theme.get('text_main')
         self.btn_bg_color = self.theme.get('btn_bg_color')
         self.accent_light = self.theme.get('accent_light')
-        self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
+        self.accent_gray = self.theme.get('accent_gray')
         self.text_muted = self.theme.get('text_muted')
 
         # Refresh UI

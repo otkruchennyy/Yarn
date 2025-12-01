@@ -1,12 +1,12 @@
 {
   "isDark": true,
-  "bg_color": "#111111", 
+  "bg_color": "#020202", 
   "bg_card": "#121212",
   "accent_color": "#202020",
   "accent_primary": "#FFB300",
   "btn_bg_color": "#202020",
-  "btn_hover_bg_color": "#292929",
-  "accent_light": "#7a7a7a",
+  "accent_gray": "#292929",
+  "accent_light": "#505050",
   "text_main": "#e0e0e0",
   "text_muted": "#a0a0a0"
 }

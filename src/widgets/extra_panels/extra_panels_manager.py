@@ -16,12 +16,23 @@ class ExtraPanel(QFrame):
         self.setFrameShape(QFrame.StyledPanel)
         self.setAutoFillBackground(True)
         self.setStyleSheet("background-color: #000000; border: 2px solid red;")
-        self.load_extra_panels()
+        self.reload_widget()
         self.setFixedHeight(200)
         self.setMouseTracking(True)
         self.apply_theme()
         if not self.isOpen: self.hide()
         else: self.show()
+
+    @log.log(msg='reload extra_widget')
+    def reload_widget(self):
+        self.extra_panels_data = self.get_extra_panels_status()
+        self.isOpen = self.extra_panels_data["isOpen"]
+        if self.isOpen:
+            self.show()
+            self.load_extra_panels(self.extra_panels_data, self.isOpen)
+        else:
+            self.hide()
+
 
     @log.log(msg='get_extra_panels_status', mode='debug')
     def get_extra_panels_status(self):
@@ -41,11 +52,8 @@ class ExtraPanel(QFrame):
             return {"isOpen": False}
         return data
     
-    def load_extra_panels(self):
-        self.extra_panels_data = self.get_extra_panels_status()
-        self.isOpen = self.extra_panels_data["isOpen"]
-        
-        if self.isOpen is True:
+    def load_extra_panels(self, extra_panels_data, isOpen):
+        if isOpen is True:
             self.panel_container_layout = QVBoxLayout(self)
             self.panel_container_layout.addStretch()
         else:
@@ -53,20 +61,20 @@ class ExtraPanel(QFrame):
     
     def ensure_single_active_button(self):
         """Ensures only one button is active, returns its name or empty string"""
-        self.extra_panels_data = self.get_extra_panels_status()
-        self.isOpen = self.extra_panels_data["isOpen"]
+        extra_panels_data = self.get_extra_panels_status()
+        isOpen = extra_panels_data["isOpen"]
         active_button = ''
         
-        for name in self.extra_panels_data:
+        for name in extra_panels_data:
             if name == "isOpen": 
                 continue
             
-            is_active = self.extra_panels_data[name] == True
+            is_active = extra_panels_data[name] == True
             if is_active:
                 active_button = name
-            self.extra_panels_data[name] = is_active
+            extra_panels_data[name] = is_active
         
-        helpers.save_config(self.extra_panels_config_path, self.extra_panels_data)
+        helpers.save_config(self.extra_panels_config_path, extra_panels_data)
 
         return active_button
     
@@ -95,15 +103,15 @@ class ExtraPanel(QFrame):
         self.text_main = self.theme.get('text_main')
         self.btn_bg_color = self.theme.get('btn_bg_color')
         self.accent_light = self.theme.get('accent_light')
-        self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
+        self.accent_gray = self.theme.get('accent_gray')
         self.text_muted = self.theme.get('text_muted')
         # Refresh UI
         self.update()
 
         self.setStyleSheet(f"""
             QFrame {{
-                background-color: {self.bg_color};
-                border-left: 1px solid {self.accent_light};
+                background-color: {self.bg_card};
+                border: 1px solid {self.accent_gray};
             }}
         """)
     def close(self):

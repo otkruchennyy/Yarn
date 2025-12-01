@@ -22,7 +22,7 @@ def get_fallback_theme():
         "accent_color": "202020",
         "accent_primary": "#FFB300",
         "btn_bg_color": "#202020",
-        "btn_hover_bg_color": "#292929",
+        "accent_gray": "#292929",
         "accent_light": "#7a7a7a",
         "text_main": "#e0e0e0",
         "text_muted": "#a0a0a0"
