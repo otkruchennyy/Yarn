@@ -7,7 +7,6 @@ from widgets.aside_panels.tools import ToolsPanel
 from widgets.aside_panels.plugins import PluginsPanel  
 from widgets.aside_panels.settings import SettingsPanel
 from widgets.aside_panels.workspaces import WorkspacesPanel
-from widgets.extra_panels.extra_panels_manager import ExtraPanel
 
 class aside(QWidget):
     """Aside widget"""
@@ -48,9 +47,6 @@ class aside(QWidget):
         # Settings panel
         self.settings_panel = SettingsPanel(self.base_path, self.theme)
         al.register_panel('settings', self.settings_panel)
-
-        # self.logs_panel = LogsPanel(self.base_path, self.theme)
-        # al.register_panel('logs', self.logs_panel)
     
     def setup_ui(self):
         """

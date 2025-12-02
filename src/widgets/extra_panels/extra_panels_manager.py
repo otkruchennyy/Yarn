@@ -1,17 +1,19 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QLabel
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Signal, QObject
 import os
 import json
 import services.logger as log
 import utils.helpers as helpers
 
 class ExtraPanel(QFrame):
+    reload_requested = Signal()
     def __init__(self, parent=None, theme=None):
         super().__init__(parent)
         self.base_path = helpers.get_project_root()
         self.theme = theme
         self.extra_panels_config_path = os.path.join(self.base_path, "config", "extra_panel.json")
         self.extra_panels_data = self.get_extra_panels_status()
+        self.panel_container_layout = QVBoxLayout(self)
         self.isOpen = self.extra_panels_data["isOpen"]
         self.setFrameShape(QFrame.StyledPanel)
         self.setAutoFillBackground(True)
@@ -23,7 +25,6 @@ class ExtraPanel(QFrame):
         if not self.isOpen: self.hide()
         else: self.show()
 
-    @log.log(msg='reload extra_widget')
     def reload_widget(self):
         self.extra_panels_data = self.get_extra_panels_status()
         self.isOpen = self.extra_panels_data["isOpen"]
@@ -33,8 +34,6 @@ class ExtraPanel(QFrame):
         else:
             self.hide()
 
-
-    @log.log(msg='get_extra_panels_status', mode='debug')
     def get_extra_panels_status(self):
         try:
             with open(self.extra_panels_config_path, 'r', encoding='utf-8') as f:
@@ -54,7 +53,6 @@ class ExtraPanel(QFrame):
     
     def load_extra_panels(self, extra_panels_data, isOpen):
         if isOpen is True:
-            self.panel_container_layout = QVBoxLayout(self)
             self.panel_container_layout.addStretch()
         else:
             pass # TODO: Hide widget if it was previously open

@@ -31,11 +31,9 @@ class LogsPanel(QWidget):
         self.layout.addWidget(name_property)
         self.logs_widgets["name_property"] = name_property
 
-    # def on_logs_clicked(self, path, name_btn):
-    #     """logs click handler"""
+    def on_logs_clicked(self, path, name_btn):
+        """logs click handler"""
 
-    #     self.reload_logs()
-    
     def reload_logs(self):
         """Reload panel logs"""
         # Delite all widgets

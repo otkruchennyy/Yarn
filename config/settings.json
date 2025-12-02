@@ -5,5 +5,5 @@
     "show_INFO_logs": true,
     "show_ERROR_logs": true,
     "enable_logging": false,
-    "log_performance": true
+    "log_performance": true // This JSON is not used in the latest commit
 }

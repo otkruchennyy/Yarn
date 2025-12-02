@@ -13,6 +13,7 @@ import widgets.aside as aside
 import widgets.text_editor as te
 import manifests.platform_manifests as manifests
 from utils.aside_manager import show_aside
+import utils.aside_manager as am
 
 class MainWindow(QMainWindow):
     """Launches all UI elements of the page that are separated into individual scripts"""
@@ -131,6 +132,8 @@ class MainWindow(QMainWindow):
         
         self.text_editor = te.textEditor(parent=self, theme=self.theme_default)
         self.extra_panel = ExtraPanel(parent=self, theme=self.theme_default)
+        self.extra_panel.reload_requested.connect(self.extra_panel.reload_widget)
+        am.set_extra_panel_signal(self.extra_panel.reload_requested)
         right_layout.addWidget(self.text_editor)
         right_layout.addWidget(self.extra_panel)
 

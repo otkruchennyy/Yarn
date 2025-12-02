@@ -1,14 +1,19 @@
 import json
 import os
 import utils.helpers as helpers
+import services.logger as log
+from PySide6.QtCore import Signal
 
 """Button click handler for aside - manages button states and contains basic logic"""
-
-btn_config_path = os.path.join(helpers.get_project_root(), "config", "btn_settings_config.json")
+base_path = helpers.get_project_root()
+btn_config_path = os.path.join(base_path, "config", "btn_settings_config.json")
+extra_panels_config_path = os.path.join(base_path, "config", "extra_panel.json")
+data_extra_panels = helpers.get_json_property(extra_panels_config_path)
 
 _main_widget = None
 _panels = {}
 _current_panel = None
+extra_panel_reload_signal = None
 
 
 def init_widget(widget_instance):
@@ -116,7 +121,31 @@ def btn_settings_clicked():
 
 def btn_logs_clicked():
     """Handle logs button click"""
-    pass
+    handle_extra_panel_click("logs")
+    reload_extra_panels()
+
+def handle_extra_panel_click(button):
+    """Click handler for buttons that trigger extra panels"""
+    for name in data_extra_panels:
+        if name == "isOpen": continue
+        elif button == name:
+            if data_extra_panels[name] is True:
+                data_extra_panels["isOpen"] = not data_extra_panels["isOpen"]
+            else:
+                data_extra_panels["isOpen"] = True
+                data_extra_panels[name] = True
+        else: data_extra_panels[name] is False
+        save_config(extra_panels_config_path, data_extra_panels)
+
+def set_extra_panel_signal(signal):
+    global extra_panel_reload_signal
+    extra_panel_reload_signal = signal
+
+def reload_extra_panels():
+    if extra_panel_reload_signal:
+        extra_panel_reload_signal.emit()
+    else:
+        log.debug("Extra panel signal not set yet")
 
 def set_active_button(key):
     """Keeps only one button active (set to true) among others"""
@@ -130,16 +159,18 @@ def set_active_button(key):
             if data['aside_is_open'] == True:
                 if data[keyName] == True:
                     data['aside_is_open'] = not data['aside_is_open']
+                    log.info(msg=f'{keyName}: aside_is_open - True')
                     hide_aside()
                 else:
-                    data[keyName] = not data[keyName]
+                    data[keyName] = True
+                    log.info(msg=f'{keyName}: aside_is_open - False')
             else:
                 show_aside()
                 data['aside_is_open'] = not data['aside_is_open']
+                log.info(msg=f'{keyName}: replace true -> false')
         else:
             data[keyName] = False
     save_config(btn_config_path, data)
-
 
 def save_config(path, data):
     """Save configuration to JSON file"""
