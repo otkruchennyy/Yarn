@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QLabel
-from PySide6.QtCore import Signal, QObject
+from PySide6.QtCore import Signal
 import os
 import json
 import services.logger as log

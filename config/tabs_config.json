@@ -1,1 +1,8 @@
-{}
+{
+  ".gitignore": "D:/pyProject/Yarn/venv/.gitignore",
+  "app.log": "D:/pyProject/Yarn/app.log",
+  "app.manifest": "D:/pyProject/Yarn/app.manifest",
+  "architecture.md": "D:/pyProject/Yarn/architecture.md",
+  "desktop.ini": "D:/pyProject/Yarn/desktop.ini",
+  "LICENSE.txt": "D:/pyProject/Yarn/LICENSE.txt"
+}

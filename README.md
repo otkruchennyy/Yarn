@@ -37,6 +37,7 @@ Yarn — это лёгкий текстовый редактор, созданн
 
 > [!WARNING]
 > Before installation, review the [**license agreement**](LICENSE.txt).
+>
 > Перед установкой ознакомьтесь с [**лицензионным соглашением**](LICENSE.txt).
 
 ## Installation | Установка

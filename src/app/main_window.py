@@ -14,6 +14,7 @@ import widgets.text_editor as te
 import manifests.platform_manifests as manifests
 from utils.aside_manager import show_aside
 import utils.aside_manager as am
+import services.logger as log
 
 class MainWindow(QMainWindow):
     """Launches all UI elements of the page that are separated into individual scripts"""
@@ -35,6 +36,7 @@ class MainWindow(QMainWindow):
         self.themes_path =os.path.join(helpers.get_project_root(), 'resources', 'themes')
 
         self.theme_default = helpers.load_theme()
+        log.debug(f'theme colors: {self.theme_default}')
 
         self.create_widgets()
         if helpers.get_json_property(os.path.join(helpers.get_project_root(), "config", "btn_settings_config.json"), 'aside_is_open'):

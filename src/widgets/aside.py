@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QFrame, QPushBu
 from PySide6.QtCore import Qt
 import utils.aside_manager as al
 import os
-# from widgets.aside_panels.logs import LogsPanel
+import services.logger as log
 from widgets.aside_panels.tools import ToolsPanel
 from widgets.aside_panels.plugins import PluginsPanel  
 from widgets.aside_panels.settings import SettingsPanel
@@ -207,7 +207,7 @@ States:
                 color: {self.accent_color}
             }}
             QPushButton[class="secondary"]{{
-                background-color: transparent;
+                background-color: {self.btn_bg_color};
                 color: {self.text_main};
                 border: 1px solid {self.accent_color};
                 padding: 5px;

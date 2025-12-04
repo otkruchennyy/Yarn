@@ -120,13 +120,24 @@ class header(QWidget):
         layout.addWidget(self.close_btn)
     
     def apply_theme(self):
-        self.bg_color = self.theme.get('bg_card')
-        self.text_color = self.theme.get('text_main')
+        """
+        Applies color theme to UI elements using CSS styling.
+        Updates main widget and button styles with theme colors.
+        """
+        # Extract theme colors
+        self.bg_card = self.theme.get('bg_card')
+        self.bg_color = self.theme.get('bg_color')
+        self.accent_color = self.theme.get('accent_color')
+        self.accent_primary = self.theme.get('accent_primary')
+        self.text_main = self.theme.get('text_main')
+        self.btn_bg_color = self.theme.get('btn_bg_color')
+        self.accent_gray = self.theme.get('accent_gray')
 
+        # Refresh UI
         self.update()
 
         self.title_label.setStyleSheet(f"""
-            color: {self.text_color};
+            color: {self.text_main};
             font-weight: bold;
             font-size: 12px;
             background: transparent;
@@ -134,45 +145,45 @@ class header(QWidget):
 
         self.minimize_btn.setStyleSheet(f"""
             QPushButton {{
-                color: {self.text_color};
+                color: {self.text_main};
                 border: none;
                 border-radius: 3px;
                 font-size: 16px;
                 font-weight: bold;
             }}
             QPushButton:hover {{
-                background-color: #ff555555;
+                background-color: {self.btn_bg_color};
             }}
         """)
         
         self.maximize_btn.setStyleSheet(f"""
             QPushButton {{
-                color: {self.text_color};
+                color: {self.text_main};
                 border: none;
                 border-radius: 3px;
                 font-size: 16px;
                 font-weight: bold;
             }}
             QPushButton:hover {{
-                background-color: #ff555555;
+                background-color: {self.btn_bg_color};
             }}
         """)
 
         self.close_btn.setStyleSheet(f"""
             QPushButton {{
-                color: {self.text_color};
+                color: {self.text_main};
                 border: none;
                 border-radius: 3px;
                 font-size: 16px;
                 font-weight: bold;
             }}
             QPushButton:hover {{
-                background-color: #ff555555;
+                background-color: {self.btn_bg_color};
             }}
         """)
     
     def paintEvent(self, event):
-        if self.bg_color:
+        if self.bg_card:
             painter = QPainter(self)
-            painter.fillRect(self.rect(), QColor(self.bg_color))
+            painter.fillRect(self.rect(), QColor(self.bg_card))
         super().paintEvent(event)

@@ -12,6 +12,7 @@ def load_theme():
     themes_path =os.path.join(get_project_root(), 'resources', 'themes')
     theme_name = get_json_property(config_path, "theme") or "default"
     theme_file = os.path.join(themes_path, f"{theme_name}.json")
+     # TODO: make debug on get_json_property()
     return get_json_property(theme_file) or get_fallback_theme()
 
 def get_fallback_theme():
