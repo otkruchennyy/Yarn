@@ -12,6 +12,8 @@ def load_theme():
     themes_path =os.path.join(get_project_root(), 'resources', 'themes')
     theme_name = get_json_property(config_path, "theme") or "default"
     theme_file = os.path.join(themes_path, f"{theme_name}.json")
+    
+    log.debug(f'Selected theme: {theme_name}')
      # TODO: make debug on get_json_property()
     return get_json_property(theme_file) or get_fallback_theme()
 
@@ -63,11 +65,11 @@ def get_json_property(path, preference_name=""):
                 return json.load(f)
             return json.load(f).get(preference_name)
     except FileNotFoundError:
-        raise FileNotFoundError(f"JSON file not found: {path}")
+        log.debug(msg=f"JSON file not found: {path}")
     except json.JSONDecodeError as e:
-        raise ValueError(f"JSON parsing error in file {path}: {e}")
+        log.debug(msg=f"JSON parsing error in file {path}: {e}")
     except Exception as e:
-        raise RuntimeError(f"Error reading file {path}: {e}")
+        log.debug(msg=f"Error reading file {path}: {e}")
     
 def replace_json_content(path_from, path_to):
     """Completely replaces contents of one JSON file with another JSON file"""

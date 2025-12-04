@@ -36,7 +36,6 @@ class MainWindow(QMainWindow):
         self.themes_path =os.path.join(helpers.get_project_root(), 'resources', 'themes')
 
         self.theme_default = helpers.load_theme()
-        log.debug(f'theme colors: {self.theme_default}')
 
         self.create_widgets()
         if helpers.get_json_property(os.path.join(helpers.get_project_root(), "config", "btn_settings_config.json"), 'aside_is_open'):

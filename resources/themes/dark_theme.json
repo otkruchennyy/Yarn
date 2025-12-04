@@ -1,12 +1,12 @@
 {
   "isDark": true,
-  "bg_color": "#fdfdfd", 
-  "bg_card": "#ededed",
-  "accent_color": "#dfdfdf",
+  "bg_color": "#1e1e1e", 
+  "bg_card": "#121212", 
+  "accent_color": "202020",
   "accent_primary": "#FFB300",
-  "btn_bg_color": "#dfdfdf",
-  "accent_gray": "#d6d6d6",
-  "accent_light": "#afafaf",
-  "text_main": "#1f1f1f",
-  "text_muted": "#5f5f5f"
+  "btn_bg_color": "#202020",
+  "accent_gray": "#292929",
+  "accent_light": "#7a7a7a",
+  "text_main": "#e0e0e0",
+  "text_muted": "#a0a0a0"
 }

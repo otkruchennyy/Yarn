@@ -28,7 +28,7 @@ class tabs(QWidget):
         self.count_tabs = len(self.property_tabs)
         self.setObjectName("tabs")
         layout = QHBoxLayout(self)
-        self.setFixedHeight(25)
+        self.setFixedHeight(35)
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
@@ -172,13 +172,15 @@ class tabs(QWidget):
     def apply_theme(self):
         self.bg_card = self.theme.get('bg_card')
         self.bg_color = self.theme.get('bg_color')
+        self.text_main = self.theme.get('text_main')
+        self.accent_gray = self.theme.get('accent_gray')
+        self.btn_bg_color = self.theme.get('btn_bg_color')
         self.accent_color = self.theme.get('accent_color')
         self.accent_primary =  self.theme.get('accent_primary')
-        self.text_main = self.theme.get('text_main')
-        self.btn_bg_color = self.theme.get('btn_bg_color')
         self.btn_hover_bg_color = self.theme.get('btn_hover_bg_color')
 
-        self.update()        
+        self.update()  
+              
         self.setStyleSheet(f"""
             QPushButton[class="add_btn"] {{
                 background-color: {self.btn_bg_color};
@@ -246,18 +248,17 @@ class tabs(QWidget):
         """)
     
     def paintEvent(self, event):
-        if self.bg_color and self.accent_color:
-            painter = QPainter(self)
-            painter.fillRect(self.rect(), QColor(self.bg_color))
+        painter = QPainter(self)
+        painter.fillRect(self.rect(), QColor(self.bg_color))
 
-            painter.setPen(QColor(self.accent_color))
-            painter.drawLine(0, 0, self.width(), 0)
-            
-            painter.drawLine(0, self.height()-1, self.width(), self.height()-1)
-            from PySide6.QtGui import QPalette
+        painter.setPen(QColor(self.accent_gray))
+        painter.drawLine(0, 0, self.width(), 0)
+        
+        painter.drawLine(0, self.height()-1, self.width(), self.height()-1)
+        from PySide6.QtGui import QPalette
 
-            palette = self.tabs_container.palette()
-            palette.setColor(QPalette.Window, QColor(self.bg_color))
-            self.tabs_container.setPalette(palette)
-            self.tabs_container.setAutoFillBackground(True)
+        palette = self.tabs_container.palette()
+        palette.setColor(QPalette.Window, QColor(self.bg_color))
+        self.tabs_container.setPalette(palette)
+        self.tabs_container.setAutoFillBackground(True)
         super().paintEvent(event)
