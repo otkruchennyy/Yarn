@@ -1,0 +1,169 @@
+2026-02-07 23:06:19.565 - INFO - main.py:35 - Run application
+2026-02-07 23:06:19.587 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:06:19.603 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:06:19.604 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:06:19.611 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:06:19.612 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:06:19.612 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:06:19.616 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:06:34.199 - INFO - main.py:35 - Run application
+2026-02-07 23:06:34.221 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:06:34.237 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:06:34.237 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:06:34.245 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:06:34.246 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:06:34.246 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:06:34.250 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:06:34.261 - INFO - extra_panels_manager.py:87 - D:\pyProject\Yarn
+2026-02-07 23:07:10.307 - INFO - main.py:35 - Run application
+2026-02-07 23:07:10.328 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:07:10.342 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:07:10.343 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:07:10.351 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:07:10.351 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:07:10.352 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:07:10.355 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:07:10.367 - INFO - extra_panels_manager.py:87 - D:\pyProject\Yarn
+2026-02-07 23:07:10.665 - DEBUG - extra_panels_manager.py:24 - Currently active tab in extra panels is "logs"
+2026-02-07 23:07:10.668 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-07 23:07:10.669 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:07:10.669 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:07:10.670 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:07:10.677 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:07:10.678 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:08:25.629 - INFO - main.py:35 - Run application
+2026-02-07 23:08:25.650 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:08:25.665 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:08:25.665 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:08:25.673 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:08:25.673 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:08:25.673 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:08:25.677 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:08:52.310 - INFO - main.py:35 - Run application
+2026-02-07 23:08:52.332 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:08:52.347 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:08:52.347 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:08:52.355 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:08:52.355 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:08:52.355 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:08:52.359 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:09:13.360 - INFO - main.py:35 - Run application
+2026-02-07 23:09:13.384 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:09:13.399 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:09:13.399 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:09:13.407 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:09:13.408 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:09:13.408 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:09:13.412 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:11:00.707 - INFO - main.py:35 - Run application
+2026-02-07 23:11:00.729 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:11:00.741 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:11:00.741 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:11:00.749 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:11:00.749 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:11:00.750 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:11:00.755 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:11:19.746 - INFO - main.py:35 - Run application
+2026-02-07 23:11:19.768 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:11:19.783 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:11:19.783 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:11:19.791 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:11:19.792 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:11:19.792 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:11:19.795 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:11:45.036 - INFO - main.py:35 - Run application
+2026-02-07 23:11:45.057 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:11:45.072 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:11:45.073 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:11:45.080 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:11:45.081 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:11:45.081 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:11:45.084 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:13:08.184 - INFO - main.py:35 - Run application
+2026-02-07 23:13:08.207 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:08.222 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:13:08.223 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:13:08.230 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:08.231 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:13:08.231 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:13:08.235 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:13:08.617 - DEBUG - extra_panels_manager.py:24 - Currently active tab in extra panels is "logs"
+2026-02-07 23:13:08.620 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-07 23:13:08.620 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:08.620 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:08.621 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:08.628 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:13:08.630 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:13:22.736 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:22.737 - DEBUG - helpers.py:85 - Space changed: JSON rewritten successfully.
+From "D:\pyProject\Yarn\config\tabs_config.json
+"{}"
+To "['D:\\pyProject\\Yarn\\config\\workspaces\\personal.json']"
+2026-02-07 23:13:22.739 - DEBUG - helpers.py:85 - Space changed: JSON rewritten successfully.
+From "D:\pyProject\Yarn\config\workspaces\work.json
+"{}"
+To "['D:\\pyProject\\Yarn\\config\\tabs_config.json']"
+2026-02-07 23:13:22.739 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:13:22.739 - DEBUG - tabs.py:130 - Tabs reload
+2026-02-07 23:13:22.778 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:22.779 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:13:22.780 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:05.968 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:05.970 - DEBUG - helpers.py:85 - Space changed: JSON rewritten successfully.
+From "D:\pyProject\Yarn\config\tabs_config.json
+"{}"
+To "['D:\\pyProject\\Yarn\\config\\workspaces\\work.json']"
+2026-02-07 23:14:05.971 - DEBUG - helpers.py:85 - Space changed: JSON rewritten successfully.
+From "D:\pyProject\Yarn\config\workspaces\personal.json
+"{}"
+To "['D:\\pyProject\\Yarn\\config\\tabs_config.json']"
+2026-02-07 23:14:05.971 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:14:05.972 - DEBUG - tabs.py:130 - Tabs reload
+2026-02-07 23:14:05.972 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:05.973 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:05.973 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:07.664 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:07.665 - DEBUG - helpers.py:85 - Space changed: JSON rewritten successfully.
+From "D:\pyProject\Yarn\config\tabs_config.json
+"{}"
+To "['D:\\pyProject\\Yarn\\config\\workspaces\\personal.json']"
+2026-02-07 23:14:07.667 - DEBUG - helpers.py:85 - Space changed: JSON rewritten successfully.
+From "D:\pyProject\Yarn\config\workspaces\work.json
+"{}"
+To "['D:\\pyProject\\Yarn\\config\\tabs_config.json']"
+2026-02-07 23:14:07.667 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:14:07.667 - DEBUG - tabs.py:130 - Tabs reload
+2026-02-07 23:14:07.668 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:07.669 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:07.669 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:15.624 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:21.841 - INFO - main.py:35 - Run application
+2026-02-07 23:14:21.865 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:21.878 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:14:21.878 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:14:21.887 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:21.887 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:14:21.888 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:14:21.892 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:14:22.294 - DEBUG - extra_panels_manager.py:24 - Currently active tab in extra panels is "logs"
+2026-02-07 23:14:22.296 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-07 23:14:22.296 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:22.297 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:22.297 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:14:22.305 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:14:22.306 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:15:00.859 - INFO - main.py:35 - Run application
+2026-02-07 23:15:00.881 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:15:00.896 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:15:00.896 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-07 23:15:00.904 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:15:00.904 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-07 23:15:00.904 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-07 23:15:00.908 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-07 23:15:01.223 - DEBUG - extra_panels_manager.py:24 - Currently active tab in extra panels is "logs"
+2026-02-07 23:15:01.226 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-07 23:15:01.226 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:15:01.226 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:15:01.227 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-07 23:15:01.234 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-07 23:15:01.235 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"

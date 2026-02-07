@@ -144,7 +144,15 @@ class LogsPanel(QWidget):
 
     def load_logs(self):
         """Load logs"""
-        # TODO
+        log_path = self.base_path + '\\app.log'
+        try:
+            with open(log_path, 'r', encoding='utf-8') as f:
+                log_data = f.read()
+            self.logsTextArea.setPlainText(log_data)
+        except FileNotFoundError:
+            self.logsTextArea.setPlainText("Файл логов не найден")
+        except Exception as e:
+            self.logsTextArea.setPlainText(f"Ошибка при чтении логов: {str(e)}")
 
     def show_panel(self):
         self.show()
@@ -177,6 +185,7 @@ class LogsPanel(QWidget):
                 background-color: #000;
                 border: 1px solid {self.accent_gray};
                 border-width: 1px 1px 0px 0px;
+                color: {self.text_main}
             }}
             
             /* Активный чекбокс */

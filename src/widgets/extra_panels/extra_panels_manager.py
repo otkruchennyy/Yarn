@@ -90,11 +90,6 @@ class ExtraPanel(QFrame):
 
         self.info_tab = QWidget()
         
-        # Setup individual tabs
-        self.setup_logs_tab()
-        self.setup_stats_tab()
-        self.setup_info_tab()
-        
         # Add tabs to tab widget
         self.tab_widget.addTab(self.logs_tab, "📊 Logs")
         self.tab_widget.addTab(self.stats_tab, "📈 Stats")
@@ -114,18 +109,6 @@ class ExtraPanel(QFrame):
             self.tab_widget.setCurrentIndex(1)
         elif self.active_tab == "info":
             self.tab_widget.setCurrentIndex(2)
-    
-    def setup_logs_tab(self):
-        """Setup the logs tab content"""
-        pass # TODO: вызов сигналом соответсвенного виджета
-    
-    def setup_stats_tab(self):
-        """Setup the statistics tab content"""
-        pass # TODO: вызов сигналом соответсвенного виджета
-    
-    def setup_info_tab(self):
-        """Setup the information tab content"""
-        pass # TODO: вызов сигналом соответсвенного виджета
     
     def apply_theme(self):
         """
