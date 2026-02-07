@@ -86,19 +86,19 @@ def debug(msg, level=2):
     filename, lineno = _get_caller_info(level)
     logger.debug(f"{os.path.basename(filename)}:{lineno} - {msg}")
 
-def info(msg, level=2):
+def info(msg, level=3):
     filename, lineno = _get_caller_info(level)  
     logger.info(f"{os.path.basename(filename)}:{lineno} - {msg}")
 
-def warning(msg, level=2):
+def warning(msg, level=3):
     filename, lineno = _get_caller_info(level)  
     logger.warning(f"{os.path.basename(filename)}:{lineno} - {msg}")
 
-def error(msg, level=2):
+def error(msg, level=3):
     filename, lineno = _get_caller_info(level)  
     logger.error(f"{os.path.basename(filename)}:{lineno} - {msg}")
 
-def critical(msg, level=2):
+def critical(msg, level=3):
     filename, lineno = _get_caller_info(level)  
     logger.critical(f"{os.path.basename(filename)}:{lineno} - {msg}")
 

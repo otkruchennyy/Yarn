@@ -118,10 +118,10 @@ States:
         self.btn_settings.clicked.connect(al.btn_settings_clicked)
         self.btn_settings.setProperty("class", "main")
 
-        self.btn_logs = QPushButton("📋") # TODO: replace emoji with img
-        self.btn_logs.setToolTip("View logs")
-        self.btn_logs.clicked.connect(al.btn_logs_clicked)
-        self.btn_logs.setProperty("class", "secondary")
+        self.btn_ExtraPanels = QPushButton("📋") # TODO: replace emoji with img
+        self.btn_ExtraPanels.setToolTip("View extra panels")
+        self.btn_ExtraPanels.clicked.connect(al.btn_ExtraPanels_clicked)
+        self.btn_ExtraPanels.setProperty("class", "secondary")
         
         widget1_layout = QVBoxLayout(self.widget1)
         widget1_layout.setAlignment(Qt.AlignTop)
@@ -131,7 +131,7 @@ States:
         widget1_layout.addWidget(self.btn_plugins)
         widget1_layout.addWidget(self.btn_settings)
         widget1_layout.addStretch()
-        widget1_layout.addWidget(self.btn_logs)
+        widget1_layout.addWidget(self.btn_ExtraPanels)
         
         # Right side panel 
         self.widget2.hide()
@@ -145,13 +145,13 @@ States:
         self.widget2_layout.addWidget(self.tools_panel)
         self.widget2_layout.addWidget(self.plugins_panel)
         self.widget2_layout.addWidget(self.settings_panel)
-        # self.widget2_layout.addWidget(self.logs_panel)
+        # self.widget2_layout.addWidget(self.ExtraPanels_panel)
         
         self.workspaces_panel.hide()
         self.tools_panel.hide()
         self.plugins_panel.hide()
         self.settings_panel.hide()
-        # self.logs_panel.hide()
+        # self.ExtraPanels_panel.hide()
         
         # add_widgets_to_main_layout 
         content_layout.addWidget(self.widget1)

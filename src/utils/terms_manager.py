@@ -1,8 +1,7 @@
 import json
 import os
 import utils.helpers as helpers
-from PySide6.QtWidgets import (QDialog, QVBoxLayout,
-                              QLabel, QPushButton, QTextEdit, QHBoxLayout)
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QLabel, QPushButton, QTextEdit, QHBoxLayout)
 from PySide6.QtCore import Qt
 
 class TermsManager:

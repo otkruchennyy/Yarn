@@ -1,4 +1,6 @@
 {
-  "isOpen": false,
-  "logs": true
+  "isOpen": true,
+  "logs": true,
+  "stats": false,
+  "info": false
 }

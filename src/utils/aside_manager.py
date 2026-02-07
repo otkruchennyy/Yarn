@@ -73,7 +73,7 @@ def _get_panel_name_by_button(button_name):
         'btn_tools': 'tools', 
         'btn_plugins': 'plugins',
         'btn_settings': 'settings',
-    } # 'btn_logs': 'logs'
+    } # 'btn_ExtraPanels': 'ExtraPanels'
     return panel_mapping.get(button_name)
 
 def aside_state():
@@ -134,23 +134,23 @@ def btn_settings_clicked():
     """Handle settings button click"""
     control_sidebar_behavior('btn_settings')
 
-def btn_logs_clicked():
-    """Handle logs button click"""
-    handle_extra_panel_click("logs")
+def btn_ExtraPanels_clicked():
+    """Handle ExtraPanels button click"""
+    handle_extra_panel_click("isOpen")
     reload_extra_panels()
 
 def handle_extra_panel_click(button):
     """Click handler for buttons that trigger extra panels"""
-    for name in data_extra_panels:
-        if name == "isOpen": continue
-        elif button == name:
-            if data_extra_panels[name] is True:
-                data_extra_panels["isOpen"] = not data_extra_panels["isOpen"]
-            else:
-                data_extra_panels["isOpen"] = True
-                data_extra_panels[name] = True
-        else: data_extra_panels[name] is False
-        save_config(extra_panels_config_path, data_extra_panels)
+    # for name in data_extra_panels:
+    #     if name == "isOpen": continue
+    #     elif button == name:
+    #         if data_extra_panels[name] is True:
+    data_extra_panels["isOpen"] = not data_extra_panels["isOpen"]
+    #     else:
+    #         data_extra_panels["isOpen"] = True
+    #         data_extra_panels[name] = True
+    # else: data_extra_panels[name] is False
+    save_config(extra_panels_config_path, data_extra_panels)
 
 def set_extra_panel_signal(signal):
     global extra_panel_reload_signal
@@ -162,7 +162,7 @@ def reload_extra_panels():
     else:
         log.debug("Extra panel signal not set yet")
 
-def set_active_button(key):
+def set_active_button(key): 
     """Keeps only one button active (set to true) among others"""
 
     with open(btn_config_path, "r", encoding="utf-8") as f:

@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QWidget, QHBoxLayout, QPushButton, QSizePolicy, QS
 from PySide6.QtCore import Qt, QEvent
 from PySide6.QtGui import QPainter, QColor, QFont, QFontMetrics
 import utils.helpers as helpers
+import services.logger as log
 
 class tabs(QWidget):
     """Tab manager"""
@@ -68,6 +69,10 @@ class tabs(QWidget):
     def on_add_tab_clicked(self):
         # TODO: load file
         file_name, directory = helpers.open_file_dialog(self)
+        if file_name == None or directory == None:
+            log.error(msg="File not selected")
+            return
+        log.debug(msg=f"{file_name} is added on tabs")
         helpers.add_json_property(self.path_tabs, file_name, directory)
         self.reload_tabs()
 
@@ -103,6 +108,7 @@ class tabs(QWidget):
     def on_remove_tab_clicked(self, name):
         # add: save file
         helpers.remove_json_property(self.path_tabs, name)
+        log.debug(msg=f"'{name}' tab has been closed")
         self.reload_tabs()
         
 
@@ -121,6 +127,7 @@ class tabs(QWidget):
         
         self.tabs_container.setMinimumWidth(self.tabs_width)
         
+        log.debug(msg="Tabs reload")
         # TODO: reload tabs_width
     
     def add_tab(self):

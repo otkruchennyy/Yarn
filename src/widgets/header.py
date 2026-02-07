@@ -178,10 +178,10 @@ class header(QWidget):
                 font-weight: bold;
             }}
             QPushButton:hover {{
-                background-color: {self.btn_bg_color};
+                background-color: #993232;
             }}
         """)
-    
+
     def paintEvent(self, event):
         if self.bg_card:
             painter = QPainter(self)

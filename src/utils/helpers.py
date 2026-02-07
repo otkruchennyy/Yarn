@@ -14,7 +14,7 @@ def load_theme():
     theme_file = os.path.join(themes_path, f"{theme_name}.json")
     
     log.debug(msg=f'Selected theme: {theme_name}')
-     # TODO: make debug on get_json_property()
+    # TODO: make debug on get_json_property()
     return get_json_property(theme_file) or get_fallback_theme()
 
 def get_fallback_theme():
@@ -62,7 +62,9 @@ def get_json_property(path, preference_name=""):
     try:
         with open(path, 'r', encoding='utf-8') as f:
             if preference_name == "":
+                log.debug(msg=f'returned all the values from "{path}"')
                 return json.load(f)
+            log.debug(msg=f'returned "{preference_name}" value from "{path}"')
             return json.load(f).get(preference_name)
     except FileNotFoundError:
         log.error(msg=f"JSON file not found: {path}")
@@ -71,19 +73,16 @@ def get_json_property(path, preference_name=""):
     except Exception as e:
         log.error(msg=f"Error reading file {path}: {e}")
     
-def replace_json_content(path_from, path_to):
+def replace_json_content(path_from, path_to): 
     """Completely replaces contents of one JSON file with another JSON file"""
     try:
-        if not os.path.exists(path_from):
-            log.error(msg='Source file not found')
-        
         with open(path_from, 'r', encoding='utf-8') as source_file:
             data_to_copy = json.load(source_file)
         
         with open(path_to, 'w', encoding='utf-8') as target_file:
             json.dump(data_to_copy, target_file, indent=2, ensure_ascii=False)
         
-        log.debug(msg='Space changed: JSON rewritten successfully')
+        log.debug(msg=f'Space changed: JSON rewritten successfully.\nFrom "{path_from}\n"{data_to_copy}"\nTo "{[path_to]}"')
     
     except FileNotFoundError:
         log.error(msg='JSON file not found')
@@ -96,7 +95,8 @@ def add_json_property(path, property, value):
     """If "property" already exists in JSON file, replaces its value; otherwise adds "property": "value" to dictionary"""
     try:
         if not property or not isinstance(property, str):
-            log.error(msg='invalid_key_name')
+            log.error(msg=f'invalid_key_name "{property}"')
+            return
         
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -105,8 +105,6 @@ def add_json_property(path, property, value):
 
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
-
-        log.debug(msg='JSON file property added')
 
     except FileNotFoundError:
         log.error(msg='JSON file not found')
@@ -120,15 +118,17 @@ def remove_json_property(path, property):
     # TODO: Clean up unused tab paths after removal
     try:
         if not property or not isinstance(property, str):
-            log.error(msg='invalid_key_name')
+            log.error(msg=f'invalid_key_name "{property}"')
+            return
 
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
         if property in data:
             del data[property]
+            log.debug(msg=f'Successfully removed "{property}" property from "{path}"')
         else:
-            log.error(msg='property_not_found')
+            log.error(msg=f'"{property}" property not found')
         
         for j in list(data.keys()):
             count = 0
@@ -138,10 +138,8 @@ def remove_json_property(path, property):
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
-        log.debug(msg='JSON property deleted successfully')
-
     except FileNotFoundError:
-        log.error(msg='JSON file not found')
+        log.error(msg=f'JSON file not found "{property}"')
     except json.JSONDecodeError as e:
         log.error(msg='JSON parsing error: {e}')
     except Exception as e:
@@ -150,7 +148,7 @@ def remove_json_property(path, property):
 def save_config(path, data):
     try:
         with open(path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
+            json.dump(data, f, indent=2, ensure_ascii=False)
     except FileNotFoundError:
         log.error(f'file not found "{path}"')
     except Exception as e:
@@ -163,8 +161,9 @@ def get_files_from_directory(folder_path, endswith=None):
     if not os.path.exists(folder_path):
         return current_files
     
-    if endswith and not endswith.startswith('.'):
-        endswith = '.' + endswith
+    if endswith:
+        if not endswith.startswith('.'):
+            endswith = '.' + endswith
     
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
@@ -177,7 +176,10 @@ def get_files_from_directory(folder_path, endswith=None):
                     current_files[name_without_extension] = file_path
             else:
                 current_files[name_without_extension] = file_path
-    
+    if endswith:
+        log.debug(msg=f'Files from the "{folder_path}" directory with the extension "{endswith}" were successfully scanned')
+    else:
+        log.debug(msg=f'Files from the "{folder_path}" directory have been successfully scanned')
     return current_files
 
 class ColorContrastCheckDialog(QDialog):
@@ -240,29 +242,29 @@ class ColorContrastCheckDialog(QDialog):
         layout.addLayout(button_layout)
 
         self.setStyleSheet("""
-             QDialog {
-                 background-color: white;
-             }
-             QLabel {
-                 font-size: 14px;
-                 padding: 10px;
-             }
-             QPushButton {
-                 background-color: white;
-                 color: black;
-                 border: none;
-                 padding: 10px 15px;
-                 font-size: 14px;
-                 border-radius: 5px;
-                 margin: 5px;
-             }
-             QPushButton:hover {
-                 background-color: #99d2ff;
-             }
-             QPushButton:pressed {
-                 background-color: #66bcff;
-             }
-             QPushButton:focus {
-                 outline: 1px solid #fff;
-             }
+            QDialog {
+                background-color: white;
+            }
+            QLabel {
+                font-size: 14px;
+                padding: 10px;
+            }
+            QPushButton {
+                background-color: white;
+                color: black;
+                border: none;
+                padding: 10px 15px;
+                font-size: 14px;
+                border-radius: 5px;
+                margin: 5px;
+            }
+            QPushButton:hover {
+                background-color: #99d2ff;
+            }
+            QPushButton:pressed {
+                background-color: #66bcff;
+            }
+            QPushButton:focus {
+                outline: 1px solid #fff;
+            }
         """)

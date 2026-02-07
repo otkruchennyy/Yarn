@@ -59,7 +59,7 @@ class MainWindow(QMainWindow):
     def setup_main_app(self):
         screen = QApplication.primaryScreen()
         geometry = screen.availableGeometry()
-        width, height = 900, 500
+        width, height = 1200, 500
         x = (geometry.width() - width) // 2
         y = (geometry.height() - height) // 2
         self.setGeometry(x, y, width, height)
