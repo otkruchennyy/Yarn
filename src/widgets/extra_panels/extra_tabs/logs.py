@@ -10,6 +10,7 @@ class LogsPanel(QWidget):
         super().__init__()
         self.base_path = base_path
         self.theme = theme
+        self.log_path = os.path.join(self.base_path, "app.log")
         self.logs_widgets = {}
         self.path_logs = log.get_log_path()
         self.refresh_timer = QTimer()
@@ -215,8 +216,6 @@ class LogsPanel(QWidget):
 
     def load_logs(self):
         """Load logs with current filters"""
-        log_path = os.path.join(self.base_path, "app.log")
-        
         try:
             active_filters = self.get_active_filters()
             
@@ -224,44 +223,70 @@ class LogsPanel(QWidget):
                 self.logsTextArea.setPlainText("All filters are disabled. No logs to display.")
                 return
             
-            if not os.path.exists(log_path):
-                self.logsTextArea.setPlainText(f"Log file not found: {log_path}")
+            if not os.path.exists(self.log_path):
+                self.logsTextArea.setPlainText(f"Log file not found: {self.log_path}")
                 return
             
-            with open(log_path, 'r', encoding='utf-8') as f:
+            with open(self.log_path, 'r', encoding='utf-8') as f:
                 # self.log_line_count
                 log_data = f.readlines()
                 len_log_data = len(log_data)
                 if len_log_data == self.log_line_count: pass
                 else:
                     for line in log_data[self.log_line_count:]:
-                        self.logsTextArea.append(line.replace('\n', ''))
+                        if len(active_filters) == 5: self.logsTextArea.append(line.replace('\n', ''))
+                        else:
+                            if any(x in line for x in active_filters):  self.logsTextArea.append(line.replace('\n', ''))
                     self.log_line_count = len_log_data
-                # if len(active_filters) == 5:
-                #     log_data = f.read()
-                #     self.logsTextArea.setPlainText(log_data)
-                # else:
-                #     all_lines = f.readlines()
-                #     filtered_lines = []
-                    
-                #     for line in all_lines:
-                #         line_upper = line.upper()
-                #         for log_level in active_filters:
-                #             if log_level in line_upper:
-                #                 filtered_lines.append(line)
-                #                 break
-                    
-                #     result_text = ''.join(filtered_lines)
-                #     self.logsTextArea.setPlainText(result_text)
         
         except FileNotFoundError:
-            self.logsTextArea.setPlainText(f"File not found: {log_path}")
+            self.logsTextArea.setPlainText(f"File not found: {self.log_path}")
         except PermissionError:
-            self.logsTextArea.setPlainText(f"Permission denied: {log_path}")
+            self.logsTextArea.setPlainText(f"Permission denied: {self.log_path}")
         except UnicodeDecodeError:
-            self.logsTextArea.setPlainText(f"Encoding error in {log_path}")
+            self.logsTextArea.setPlainText(f"Encoding error in {self.log_path}")
         except Exception as e:
             self.logsTextArea.setPlainText(f"Error loading logs: {str(e)}\tType: {type(e).__name__}")
+    
+    # def get_logs_with_filters(self):
+    #     try:
+    #         active_filters = self.get_active_filters()
+            
+    #         if not active_filters:
+    #             self.logsTextArea.setPlainText("All filters are disabled. No logs to display.")
+    #             return
+            
+    #         if not os.path.exists(self.log_path):
+    #             self.logsTextArea.setPlainText(f"Log file not found: {self.log_path}")
+    #             return
+            
+    #         with open(self.log_path, 'r', encoding='utf-8') as f:
+    #             log_data = f.readlines()
+    #             if len(active_filters) == 5:
+    #                 log_data = f.read()
+    #                 self.logsTextArea.setPlainText(log_data)
+    #             else:
+    #                 all_lines = f.readlines()
+    #                 filtered_lines = []
+                    
+    #                 for line in all_lines:
+    #                     line_upper = line.upper()
+    #                     for log_level in active_filters:
+    #                         if log_level in line_upper:
+    #                             filtered_lines.append(line)
+    #                             break
+                    
+    #                 result_text = ''.join(filtered_lines)
+    #                 self.logsTextArea.setPlainText(result_text)
+                
+    #     except FileNotFoundError:
+    #         self.logsTextArea.setPlainText(f"File not found: {self.log_path}")
+    #     except PermissionError:
+    #         self.logsTextArea.setPlainText(f"Permission denied: {self.log_path}")
+    #     except UnicodeDecodeError:
+    #         self.logsTextArea.setPlainText(f"Encoding error in {self.log_path}")
+    #     except Exception as e:
+    #         self.logsTextArea.setPlainText(f"Error loading logs: {str(e)}\tType: {type(e).__name__}")
 
     def show_panel(self):
         self.show()
