@@ -30,6 +30,9 @@ class MainWindow(QMainWindow):
             self.setWindowIcon(QIcon(icon_path))
             
         self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
+        self.current_lang = helpers.get_json_property(os.path.join(helpers.get_project_root(), 'config', 'config.json'), "lang")
+        log.info(msg=f'Selected language: "{self.current_lang}"')
+        self.lang_data = helpers.get_json_property(os.path.join(self.base_path, "resources", "language", f'{self.current_lang}.json'))
 
         self.setup_main_app()
         self.config_path = os.path.join(helpers.get_project_root(), 'config', 'config.json')
@@ -83,7 +86,7 @@ class MainWindow(QMainWindow):
         self.header.maximize_btn.clicked.connect(self.toggle_maximize_window)
         self.header.close_btn.clicked.connect(self.close)
 
-        self.tabs = tabs(theme=self.theme_default, parent=self)
+        self.tabs = tabs(theme=self.theme_default, parent=self, lang=self.lang_data)
         self.tabs.setMouseTracking(True)
         self.layout.addWidget(self.tabs)
 
@@ -95,7 +98,7 @@ class MainWindow(QMainWindow):
         right_layout.setSpacing(0)
         
         self.text_editor = te.textEditor(parent=self, theme=self.theme_default)
-        self.extra_panel = ExtraPanel(parent=self, theme=self.theme_default)
+        self.extra_panel = ExtraPanel(parent=self, theme=self.theme_default, lang=self.lang_data)
         self.extra_panel.reload_requested.connect(self.extra_panel.reload_widget)
         am.set_extra_panel_signal(self.extra_panel.reload_requested)
         right_layout.addWidget(self.text_editor)

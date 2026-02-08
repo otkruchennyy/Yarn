@@ -18,11 +18,12 @@ class LogsPanel(QWidget):
     - Theme-aware styling
     """
     
-    def __init__(self, base_path, theme=None):
+    def __init__(self, base_path, theme=None, lang=None):
         """Initialize the logs panel with base path and theme settings."""
         super().__init__()
         self.base_path = base_path
         self.theme = theme
+        self.lang = lang
         self.log_path = os.path.join(self.base_path, "app.log")
         self.logs_widgets = {}
         self.path_logs = log.get_log_path()  # Path for logger service
@@ -52,7 +53,7 @@ class LogsPanel(QWidget):
         self.filter_layout.setContentsMargins(5, 5, 5, 5)
         self.filter_layout.setSpacing(20)
 
-        self.filter_label = QLabel("Filter levels:")
+        self.filter_label = QLabel(self.lang["Filter levels"])
         self.filter_layout.addWidget(self.filter_label)
 
         # Create severity level checkboxes
@@ -68,13 +69,13 @@ class LogsPanel(QWidget):
             checkbox.stateChanged.connect(self.on_filter_changed)
 
         # Filter control buttons
-        self.btn_select_all = QPushButton("All")
+        self.btn_select_all = QPushButton(self.lang["All"])
         self.btn_select_all.setFixedWidth(50)
-        self.btn_select_none = QPushButton("None")
+        self.btn_select_none = QPushButton(self.lang["None"])
         self.btn_select_none.setFixedWidth(50)
 
         # Auto-refresh toggle button
-        self.btn_auto_refresh = QPushButton("🔄 Auto")
+        self.btn_auto_refresh = QPushButton(self.lang["Auto"])
         self.btn_auto_refresh.setCheckable(True)
         self.btn_auto_refresh.setChecked(True)  # Enabled by default
         self.btn_auto_refresh.setFixedWidth(70)
@@ -150,11 +151,11 @@ class LogsPanel(QWidget):
         """Toggle auto-refresh functionality on/off."""
         if self.btn_auto_refresh.isChecked():
             log.debug(msg='"auto_refresh" active')
-            self.btn_auto_refresh.setText("🔄 Auto")
+            self.btn_auto_refresh.setText(self.lang["Auto"])
             self.refresh_timer.start(500)
         else:
             log.debug(msg='"auto_refresh" pause')
-            self.btn_auto_refresh.setText("⏸ Pause")
+            self.btn_auto_refresh.setText(self.lang["Pause"])
             self.refresh_timer.stop()
 
     def on_filter_changed(self):

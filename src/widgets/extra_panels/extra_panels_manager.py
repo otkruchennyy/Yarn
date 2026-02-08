@@ -9,10 +9,11 @@ import widgets.extra_panels.extra_tabs.logs as lp
 
 class ExtraPanel(QFrame):
     reload_requested = Signal()
-    def __init__(self, parent=None, theme=None):
+    def __init__(self, parent=None, theme=None, lang=None):
         super().__init__(parent)
         self.base_path = helpers.get_project_root()
         self.theme = theme
+        self.lang = lang
         self.extra_panels_config_path = os.path.join(self.base_path, "config", "extra_panel.json")
         self.extra_panels_data = self.get_extra_panels_status()
         self.isOpen = self.extra_panels_data["isOpen"]
@@ -84,16 +85,17 @@ class ExtraPanel(QFrame):
         self.tab_widget.setTabPosition(QTabWidget.North)
         
         # Create tab pages
-        self.logs_tab = lp.LogsPanel(self.base_path, self.theme)
+        self.logs_tab = lp.LogsPanel(self.base_path, self.theme, lang=self.lang)
 
         self.stats_tab = QWidget()
 
         self.info_tab = QWidget()
         
         # Add tabs to tab widget
-        self.tab_widget.addTab(self.logs_tab, "📊 Logs")
-        self.tab_widget.addTab(self.stats_tab, "📈 Stats")
-        self.tab_widget.addTab(self.info_tab, "ℹ️ Info")
+        
+        self.tab_widget.addTab(self.logs_tab, f"{self.lang["Logs"]}")
+        self.tab_widget.addTab(self.stats_tab, f"{self.lang["Stats"]}")
+        self.tab_widget.addTab(self.info_tab, f"{self.lang["Info"]}")
         
         # Add tab widget to main layout
         self.panel_container_layout.addWidget(self.tab_widget)

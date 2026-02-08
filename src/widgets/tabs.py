@@ -7,10 +7,11 @@ import services.logger as log
 
 class tabs(QWidget):
     """Tab manager"""
-    def __init__(self, theme=None, parent=None):
+    def __init__(self, theme=None, parent=None, lang=None):
         super().__init__(parent)
         self.bg_color = None
         self.theme = theme
+        self.lang = lang
         self.path_tabs = os.path.join(helpers.get_project_root(), "config", "tabs_config.json")
         self.setup_ui()
         self.apply_theme()
@@ -39,7 +40,7 @@ class tabs(QWidget):
         self.add_tab_btn.setCursor(Qt.PointingHandCursor)
         self.add_tab_btn.setProperty("class", "add_btn")
         self.add_tab_btn.setFont(QFont("Monospace", 10))
-        self.add_tab_btn.setToolTip("Add tab")
+        self.add_tab_btn.setToolTip(self.lang["Add tab"])
         self.add_tab_btn.clicked.connect(self.on_add_tab_clicked)
         layout.addWidget(self.add_tab_btn)
         
