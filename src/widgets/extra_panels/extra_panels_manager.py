@@ -105,10 +105,13 @@ class ExtraPanel(QFrame):
         """Set the active tab based on configuration"""
         if self.active_tab == "logs":
             self.tab_widget.setCurrentIndex(0)
+            log.debug(msg='Logs panel open in extra panels')
         elif self.active_tab == "stats":
             self.tab_widget.setCurrentIndex(1)
+            log.debug(msg='Stats panel open in extra panels')
         elif self.active_tab == "info":
             self.tab_widget.setCurrentIndex(2)
+            log.debug(msg='Info panel open in extra panels')
     
     def apply_theme(self):
         """

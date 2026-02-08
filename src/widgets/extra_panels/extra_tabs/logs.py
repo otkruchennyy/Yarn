@@ -500,6 +500,11 @@ class LogsPanel(QWidget):
             QScrollBar::sub-page:horizontal {{
                 background: transparent;
             }}
+            QPushButton {{
+                background-color: {self.accent_gray};
+                border: 1px solid {self.accent_color};
+                color: {self.text_main}
+            }}
         """)
         
         # Force UI refresh
