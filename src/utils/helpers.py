@@ -82,7 +82,7 @@ def replace_json_content(path_from, path_to):
         with open(path_to, 'w', encoding='utf-8') as target_file:
             json.dump(data_to_copy, target_file, indent=2, ensure_ascii=False)
         
-        log.debug(msg=f'Space changed: JSON rewritten successfully.\nFrom "{path_from}\n"{data_to_copy}"\nTo "{[path_to]}"')
+        log.debug(msg=f'Space changed: JSON rewritten successfully.\tFrom "{path_from}\t"{data_to_copy}"\tTo "{[path_to]}"')
     
     except FileNotFoundError:
         log.error(msg='JSON file not found')

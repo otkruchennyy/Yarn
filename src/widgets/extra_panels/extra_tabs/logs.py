@@ -14,20 +14,6 @@ class LogsPanel(QWidget):
         self.path_logs = log.get_log_path()
         self.refresh_timer = QTimer()
         self.refresh_timer.timeout.connect(self.load_logs)
-        self.log_line_count = 0
-        try:
-            log_path = os.path.join(self.base_path, "app.log")
-            with open(log_path, 'r', encoding='utf-8') as f:
-                self.log_line_count = len(f.readlines())
-                log.debug(msg=f'log_line_count: "{self.log_line_count}')
-        except FileNotFoundError:
-            log.debug(msg=f"File not found: {log_path}")
-        except PermissionError:
-            log.debug(msg=f"Permission denied: {log_path}")
-        except UnicodeDecodeError:
-            log.debug(msg=f"Encoding error in {log_path}")
-        except Exception as e:
-            log.debug(msg=f"Error loading logs: {str(e)}\nType: {type(e).__name__}")
         self.setup_ui()
         self.apply_theme()
 
@@ -86,6 +72,23 @@ class LogsPanel(QWidget):
         self.logsTextArea.setAcceptRichText(False)
         self.logsTextArea.setContextMenuPolicy(Qt.ContextMenuPolicy.DefaultContextMenu)
         
+        self.log_line_count = 0
+        try:
+            log_path = os.path.join(self.base_path, "app.log")
+            with open(log_path, 'r', encoding='utf-8') as f:
+                log_data = f.readlines()
+                self.log_line_count = len(log_data)
+                self.logsTextArea.setPlainText(''.join(log_data))
+                log.debug(msg=f'log_line_count: "{self.log_line_count}"')
+        except FileNotFoundError:
+            log.debug(msg=f"File not found: {log_path}")
+        except PermissionError:
+            log.debug(msg=f"Permission denied: {log_path}")
+        except UnicodeDecodeError:
+            log.debug(msg=f"Encoding error in {log_path}")
+        except Exception as e:
+            log.debug(msg=f"Error loading logs: {str(e)}\tType: {type(e).__name__}")
+
         self.load_logs()
         self.layout.addWidget(self.logsTextArea)
 
@@ -226,23 +229,30 @@ class LogsPanel(QWidget):
                 return
             
             with open(log_path, 'r', encoding='utf-8') as f:
-                loaded_line_count = 0
-                if len(active_filters) == 5:
-                    log_data = f.read()
-                    self.logsTextArea.setPlainText(log_data)
+                # self.log_line_count
+                log_data = f.readlines()
+                len_log_data = len(log_data)
+                if len_log_data == self.log_line_count: pass
                 else:
-                    all_lines = f.readlines()
-                    filtered_lines = []
+                    for line in log_data[self.log_line_count:]:
+                        self.logsTextArea.append(line.replace('\n', ''))
+                    self.log_line_count = len_log_data
+                # if len(active_filters) == 5:
+                #     log_data = f.read()
+                #     self.logsTextArea.setPlainText(log_data)
+                # else:
+                #     all_lines = f.readlines()
+                #     filtered_lines = []
                     
-                    for line in all_lines:
-                        line_upper = line.upper()
-                        for log_level in active_filters:
-                            if log_level in line_upper:
-                                filtered_lines.append(line)
-                                break
+                #     for line in all_lines:
+                #         line_upper = line.upper()
+                #         for log_level in active_filters:
+                #             if log_level in line_upper:
+                #                 filtered_lines.append(line)
+                #                 break
                     
-                    result_text = ''.join(filtered_lines)
-                    self.logsTextArea.setPlainText(result_text)
+                #     result_text = ''.join(filtered_lines)
+                #     self.logsTextArea.setPlainText(result_text)
         
         except FileNotFoundError:
             self.logsTextArea.setPlainText(f"File not found: {log_path}")
@@ -251,7 +261,7 @@ class LogsPanel(QWidget):
         except UnicodeDecodeError:
             self.logsTextArea.setPlainText(f"Encoding error in {log_path}")
         except Exception as e:
-            self.logsTextArea.setPlainText(f"Error loading logs: {str(e)}\nType: {type(e).__name__}")
+            self.logsTextArea.setPlainText(f"Error loading logs: {str(e)}\tType: {type(e).__name__}")
 
     def show_panel(self):
         self.show()
