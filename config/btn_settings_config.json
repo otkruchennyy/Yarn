@@ -1,7 +1,7 @@
 {
   "aside_is_open": true,
   "btn_workspaces": false,
-  "btn_tools": true,
-  "btn_plugins": false,
+  "btn_tools": false,
+  "btn_plugins": true,
   "btn_settings": false
 }
