@@ -8,11 +8,11 @@ class TermsManager:
     def __init__(self):
         self.base_path = helpers.get_project_root()
         self.config_path = os.path.join(self.base_path, "config", "config.json")
-        
+        self._ensure_config_exists()
         self.config_data = helpers.get_json_property(f'{self.config_path}')
 
         if self.config_data is None:
-            self.config_data = {"termsAccepted": False, "theme": "dark_theme", "fonts": "basic_fonts"}
+            self.config_data = { "termsAccepted": false, "theme": "dark_theme", "fonts": "basic_fonts", "current_workspaces": "work", "lang": "rus"}
 
     def search_termsAccepted(self):
         if self.config_data.get("termsAccepted") == True:
@@ -35,6 +35,63 @@ class TermsManager:
         os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
         with open(self.config_path, "w", encoding="utf-8") as f:
             json.dump(self.config_data, f, indent=2, ensure_ascii=False)
+    
+    def _ensure_config_exists(self):
+        """Создаёт config.json с дефолтными значениями, если его нет."""
+        if not os.path.exists(self.config_path):
+            # Создаём папку config если нужно
+            os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
+            
+            default_config = {
+                "termsAccepted": False,
+                "theme": "dark_theme",
+                "fonts": "basic_fonts",
+                "current_workspaces": [],
+                "lang": "eng"
+            }
+            
+            try:
+                with open(self.config_path, 'w', encoding='utf-8') as f:
+                    json.dump(default_config, f, indent=2, ensure_ascii=False)
+                print(f"Created default config at {self.config_path}")
+            except Exception as e:
+                print(f"Failed to create config: {e}")
+                # Можно создать минимальный конфиг в оперативке
+                self.config_data = default_config.copy()
+        else:
+            # Проверяем что есть обязательное поле termsAccepted
+            try:
+                with open(self.config_path, 'r', encoding='utf-8') as f:
+                    existing_config = json.load(f)
+                
+                if "termsAccepted" not in existing_config:
+                    existing_config["termsAccepted"] = False
+                    with open(self.config_path, 'w', encoding='utf-8') as f:
+                        json.dump(existing_config, f, indent=2, ensure_ascii=False)
+            except (json.JSONDecodeError, IOError):
+                # Если файл битый - пересоздаём
+                self._recreate_config()
+    
+    def _recreate_config(self):
+        """Пересоздаёт config.json при повреждении."""
+        backup_path = f"{self.config_path}.bak"
+        try:
+            os.rename(self.config_path, backup_path)
+        except OSError:
+            pass
+            
+        default_config = {
+            "termsAccepted": False,
+            "theme": "dark_theme",
+            "fonts": "basic_fonts",
+            "current_workspaces": [],
+            "lang": "en"
+        }
+        
+        with open(self.config_path, 'w', encoding='utf-8') as f:
+            json.dump(default_config, f, indent=2, ensure_ascii=False)
+        
+        print(f"Recreated config (backup at {backup_path})")
 
 
 class TermsDialog(QDialog):

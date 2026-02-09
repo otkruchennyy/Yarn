@@ -1,55 +1,155 @@
-2026-02-09 23:38:46.091 - INFO - main.py:162 - Starting Yarn application
-2026-02-09 23:38:46.120 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:38:49.551 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:38:49.565 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
-2026-02-09 23:38:49.570 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:38:49.571 - INFO - main_window.py:77 - Selected language: "rus"
-2026-02-09 23:38:49.572 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\language\rus.json"
-2026-02-09 23:38:49.574 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:38:49.574 - DEBUG - helpers.py:16 - Selected theme: dark_theme
-2026-02-09 23:38:49.575 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
-2026-02-09 23:38:49.578 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
-2026-02-09 23:38:49.586 - DEBUG - logs.py:142 - Initial log load: 11 lines
-2026-02-09 23:38:52.253 - INFO - main.py:162 - Starting Yarn application
-2026-02-09 23:38:52.282 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:38:52.657 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:38:52.669 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
-2026-02-09 23:38:52.674 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:38:52.675 - INFO - main_window.py:77 - Selected language: "rus"
-2026-02-09 23:38:52.676 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\language\rus.json"
-2026-02-09 23:38:52.677 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:38:52.678 - DEBUG - helpers.py:16 - Selected theme: dark_theme
-2026-02-09 23:38:52.679 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
-2026-02-09 23:38:52.682 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
-2026-02-09 23:38:52.708 - DEBUG - logs.py:142 - Initial log load: 23 lines
-2026-02-09 23:41:46.110 - INFO - main.py:162 - Starting Yarn application
-2026-02-09 23:41:46.140 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:41:46.520 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:41:46.532 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
-2026-02-09 23:41:46.537 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:41:46.538 - INFO - main_window.py:77 - Selected language: "rus"
-2026-02-09 23:41:46.539 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\language\rus.json"
-2026-02-09 23:41:46.540 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:41:46.541 - DEBUG - helpers.py:16 - Selected theme: dark_theme
-2026-02-09 23:41:46.542 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
-2026-02-09 23:41:46.545 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
-2026-02-09 23:41:46.562 - DEBUG - logs.py:142 - Initial log load: 35 lines
-2026-02-09 23:41:46.884 - DEBUG - extra_panels_manager.py:218 - Logs panel open in extra panels
-2026-02-09 23:41:46.896 - DEBUG - extra_panels_manager.py:77 - Currently active tab in extra panels is "logs"
-2026-02-09 23:41:46.904 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
-2026-02-09 23:41:46.906 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:41:46.907 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:41:46.909 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
-2026-02-09 23:41:46.916 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:41:46.918 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:41:46.970 - INFO - main.py:122 - Metrics collection started
-2026-02-09 23:42:25.328 - DEBUG - helpers.py:67 - returned "btn_workspaces" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:25.330 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:27.088 - DEBUG - helpers.py:67 - returned "btn_plugins" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:27.089 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:27.816 - DEBUG - helpers.py:67 - returned "btn_tools" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:27.818 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:29.720 - DEBUG - helpers.py:67 - returned "btn_settings" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:29.721 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:42:31.176 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
-2026-02-09 23:43:19.705 - INFO - main.py:152 - Metrics collection stopped
+2026-02-09 23:51:11.403 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:51:11.433 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\config\config.json
+2026-02-09 23:51:13.821 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:51:13.834 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:51:13.840 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:51:13.840 - INFO - main_window.py:77 - Selected language: "None"
+2026-02-09 23:51:13.841 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\resources\language\None.json
+2026-02-09 23:51:13.842 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:51:13.843 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:51:13.844 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:51:13.847 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-09 23:51:39.432 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:51:39.462 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\config\config.json
+2026-02-09 23:51:43.522 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:51:43.534 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:51:43.540 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:51:43.541 - INFO - main_window.py:77 - Selected language: "None"
+2026-02-09 23:51:43.541 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\resources\language\None.json
+2026-02-09 23:51:43.542 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:51:43.543 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:51:43.544 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:51:43.547 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-09 23:54:52.919 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:54:52.972 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\config\config.json
+2026-02-09 23:54:57.083 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:54:57.119 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\config\config.json
+2026-02-09 23:55:05.655 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:55:05.685 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:55:07.978 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:55:08.001 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:55:08.008 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:55:08.009 - INFO - main_window.py:77 - Selected language: "rus"
+2026-02-09 23:55:08.010 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\language\rus.json"
+2026-02-09 23:55:08.011 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:55:08.012 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:55:08.013 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:55:08.015 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-09 23:55:08.034 - DEBUG - logs.py:142 - Initial log load: 37 lines
+2026-02-09 23:55:08.081 - DEBUG - extra_panels_manager.py:218 - Logs panel open in extra panels
+2026-02-09 23:55:08.094 - DEBUG - extra_panels_manager.py:77 - Currently active tab in extra panels is "logs"
+2026-02-09 23:55:08.103 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-09 23:55:08.105 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:55:08.107 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:55:08.108 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:55:08.116 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:55:08.158 - INFO - main.py:122 - Metrics collection started
+2026-02-09 23:55:10.609 - INFO - main.py:152 - Metrics collection stopped
+2026-02-09 23:55:17.865 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:55:17.896 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\config\config.json
+2026-02-09 23:58:57.228 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:58:57.259 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:58:59.418 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:58:59.432 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:58:59.438 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:58:59.439 - INFO - main_window.py:77 - Selected language: "en"
+2026-02-09 23:58:59.439 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\resources\language\en.json
+2026-02-09 23:58:59.441 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:58:59.441 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:58:59.442 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:58:59.446 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-09 23:59:09.836 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:59:09.866 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:10.239 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:59:10.251 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:59:10.258 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:10.259 - INFO - main_window.py:77 - Selected language: "en"
+2026-02-09 23:59:10.260 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\resources\language\en.json
+2026-02-09 23:59:10.261 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:10.262 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:59:10.263 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:59:10.266 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-09 23:59:30.098 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:59:30.131 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:30.509 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:59:30.521 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:59:30.526 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:30.527 - INFO - main_window.py:77 - Selected language: "rus"
+2026-02-09 23:59:30.528 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\language\rus.json"
+2026-02-09 23:59:30.529 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:30.530 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:59:30.531 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:59:30.534 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-09 23:59:30.571 - DEBUG - logs.py:142 - Initial log load: 82 lines
+2026-02-09 23:59:30.905 - DEBUG - extra_panels_manager.py:218 - Logs panel open in extra panels
+2026-02-09 23:59:30.914 - DEBUG - extra_panels_manager.py:77 - Currently active tab in extra panels is "logs"
+2026-02-09 23:59:30.922 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-09 23:59:30.924 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:30.926 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:30.927 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:30.934 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:59:30.975 - INFO - main.py:122 - Metrics collection started
+2026-02-09 23:59:33.223 - INFO - main.py:152 - Metrics collection stopped
+2026-02-09 23:59:41.031 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:59:41.061 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:43.254 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:59:43.267 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:59:43.272 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:43.273 - INFO - main_window.py:77 - Selected language: "en"
+2026-02-09 23:59:43.274 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\resources\language\en.json
+2026-02-09 23:59:43.275 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:43.276 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:59:43.277 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:59:43.281 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-09 23:59:45.188 - INFO - main.py:162 - Starting Yarn application
+2026-02-09 23:59:45.217 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:45.591 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-09 23:59:45.604 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-09 23:59:45.610 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:45.611 - INFO - main_window.py:77 - Selected language: "en"
+2026-02-09 23:59:45.611 - ERROR - helpers.py:70 - JSON file not found: D:\pyProject\Yarn\resources\language\en.json
+2026-02-09 23:59:45.613 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-09 23:59:45.613 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-09 23:59:45.614 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-09 23:59:45.618 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-10 00:00:51.877 - INFO - main.py:162 - Starting Yarn application
+2026-02-10 00:00:51.922 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:00:52.539 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-10 00:00:52.567 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-10 00:00:52.575 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:00:52.577 - INFO - main_window.py:77 - Selected language: "eng"
+2026-02-10 00:00:52.578 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\language\eng.json"
+2026-02-10 00:00:52.580 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:00:52.581 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-10 00:00:52.584 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-10 00:00:52.589 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-10 00:00:52.635 - DEBUG - logs.py:142 - Initial log load: 125 lines
+2026-02-10 00:00:52.977 - DEBUG - extra_panels_manager.py:218 - Logs panel open in extra panels
+2026-02-10 00:00:52.993 - DEBUG - extra_panels_manager.py:77 - Currently active tab in extra panels is "logs"
+2026-02-10 00:00:53.024 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-10 00:00:53.029 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:00:53.034 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:00:53.037 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:00:53.052 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-10 00:00:53.145 - INFO - main.py:122 - Metrics collection started
+2026-02-10 00:00:59.042 - INFO - main.py:162 - Starting Yarn application
+2026-02-10 00:00:59.085 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:01:01.560 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-10 00:01:01.572 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\extra_panel.json"
+2026-02-10 00:01:01.579 - DEBUG - helpers.py:67 - returned "lang" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:01:01.579 - INFO - main_window.py:77 - Selected language: "eng"
+2026-02-10 00:01:01.581 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\language\eng.json"
+2026-02-10 00:01:01.582 - DEBUG - helpers.py:67 - returned "theme" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:01:01.583 - DEBUG - helpers.py:16 - Selected theme: dark_theme
+2026-02-10 00:01:01.584 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\resources\themes\dark_theme.json"
+2026-02-10 00:01:01.587 - DEBUG - helpers.py:65 - returned all the values from "D:\pyProject\Yarn\config\tabs_config.json"
+2026-02-10 00:01:01.625 - DEBUG - logs.py:142 - Initial log load: 145 lines
+2026-02-10 00:01:01.680 - DEBUG - extra_panels_manager.py:218 - Logs panel open in extra panels
+2026-02-10 00:01:01.691 - DEBUG - extra_panels_manager.py:77 - Currently active tab in extra panels is "logs"
+2026-02-10 00:01:01.701 - DEBUG - helpers.py:180 - Files from the "D:\pyProject\Yarn\config\workspaces" directory with the extension ".json" were successfully scanned
+2026-02-10 00:01:01.704 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:01:01.707 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:01:01.709 - DEBUG - helpers.py:67 - returned "current_workspaces" value from "D:\pyProject\Yarn\config\config.json"
+2026-02-10 00:01:01.719 - DEBUG - helpers.py:67 - returned "aside_is_open" value from "D:\pyProject\Yarn\config\btn_settings_config.json"
+2026-02-10 00:01:01.752 - INFO - main.py:122 - Metrics collection started
+2026-02-10 00:01:06.673 - INFO - main.py:152 - Metrics collection stopped
