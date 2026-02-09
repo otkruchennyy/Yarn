@@ -5,10 +5,11 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel
 # import utils.helpers as helpers
 
 class SettingsPanel(QWidget):
-    def __init__(self, base_path, theme):
+    def __init__(self, base_path, theme, lang=None):
         super().__init__()
         self.base_path = base_path
         self.theme = theme
+        self.lang = lang
         self.settings_widgets = {}
         self.setup_ui()
         self.apply_theme()
@@ -19,7 +20,7 @@ class SettingsPanel(QWidget):
         self.layout.setSpacing(0)
         self.setLayout(self.layout)
         
-        name_property = QLabel("settings")
+        name_property = QLabel(self.lang["Settings"])
         self.layout.addWidget(name_property)
         self.settings_widgets["name_property"] = name_property
 

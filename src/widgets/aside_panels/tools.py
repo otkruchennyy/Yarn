@@ -3,12 +3,14 @@ from PySide6.QtGui import QFont
 from PySide6.QtCore import Qt
 import os
 import utils.helpers as helpers
+import services.logger as log
 
 class ToolsPanel(QWidget):
-    def __init__(self, base_path, theme):
+    def __init__(self, base_path, theme, lang=None):
         super().__init__()
         self.theme = theme
         self.base_path = base_path
+        self.lang = lang
         self.tools_widgets = {}
         self.setup_ui()
         self.apply_theme()
@@ -20,13 +22,13 @@ class ToolsPanel(QWidget):
         self.setLayout(self.layout)
         self.font = QFont("Segoe UI", 10) # TODO: current font
         
-        name_property = QLabel("tools")
+        name_property = QLabel(self.lang["Tools"])
         self.layout.addWidget(name_property)
         self.tools_widgets["name_property"] = name_property
 
-        self.add_btn("Search emails", "Search for email addresses in the document")
-        self.add_btn("Extract URLs", "Find and extract all web links from the document")
-        self.add_btn("Find Phone Numbers", "Search for phone numbers in various formats")
+        self.add_btn(self.lang["Search emails"], self.lang["Search emails Tooltip"])
+        self.add_btn(self.lang["Extract URLs"], self.lang["Extract URLs Tooltip"])
+        self.add_btn(self.lang["Find Phone Numbers"], self.lang["Find Phone Numbers Tooltip"])
         
         self.layout.addStretch()
 
@@ -44,8 +46,8 @@ class ToolsPanel(QWidget):
             self.layout.addWidget(btn)
             self.tools_widgets[name] = btn
         
-        except TypeError: print("TypeError: invalid name")
-        except: print(f'no function named {connect}') # TODO: Implement an error counter in the widget
+        except TypeError: log.error(msg="TypeError: invalid name")
+        except: log.error(msg=f'no function named {connect}') # TODO: Implement an error counter in the widget
 
     def on_tools_clicked(self, path, name_btn):
         """Tools click handler"""

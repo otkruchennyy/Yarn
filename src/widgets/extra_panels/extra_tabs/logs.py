@@ -70,15 +70,12 @@ class LogsPanel(QWidget):
 
         # Filter control buttons
         self.btn_select_all = QPushButton(self.lang["All"])
-        self.btn_select_all.setFixedWidth(50)
         self.btn_select_none = QPushButton(self.lang["None"])
-        self.btn_select_none.setFixedWidth(50)
 
         # Auto-refresh toggle button
         self.btn_auto_refresh = QPushButton(self.lang["Auto"])
         self.btn_auto_refresh.setCheckable(True)
         self.btn_auto_refresh.setChecked(True)  # Enabled by default
-        self.btn_auto_refresh.setFixedWidth(70)
         self.btn_auto_refresh.clicked.connect(self.toggle_auto_refresh)
 
         self.btn_select_all.clicked.connect(self.select_all_levels)
@@ -504,7 +501,8 @@ class LogsPanel(QWidget):
             QPushButton {{
                 background-color: {self.accent_gray};
                 border: 1px solid {self.accent_color};
-                color: {self.text_main}
+                color: {self.text_main};
+                padding: 3px 10px;
             }}
         """)
         

@@ -5,10 +5,11 @@ import os
 import utils.helpers as helpers
 
 class PluginsPanel(QWidget):
-    def __init__(self, base_path, theme):
+    def __init__(self, base_path, theme, lang=None):
         super().__init__()
         self.base_path = base_path
         self.theme = theme
+        self.lang = lang
         self.plugins_widgets = {}
         self.setup_ui()
         self.apply_theme()
@@ -26,7 +27,7 @@ class PluginsPanel(QWidget):
         self.layout.addStretch()
 
     def load_plugins(self):
-        name_property = QLabel("plugins")
+        name_property = QLabel(self.lang["Plugins"])
         self.layout.addWidget(name_property)
         self.plugins_widgets["name_property"] = name_property
 

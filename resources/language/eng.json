@@ -1,3 +1,23 @@
 {
-    "Add tab": "Add tab"
+    "Add tab": "Add Tab",
+    "Logs": "📊 Logs",
+    "Stats": "📈 Stats",
+    "Info": "ℹ️ File Info",
+    "Filter levels": "Log Levels:",
+    "All": "All",
+    "None": "None",
+    "Auto": "🔄 Auto",
+    "Pause": "⏸ Pause",
+    "Aside panel": "Side Panel",
+    "Workspaces": "Workspaces",
+    "Tools": "Tools",
+    "Plugins": "Plugins",
+    "Settings": "Settings",
+    "View extra panels": "Extra Panel",
+    "Search emails": "Find Emails",
+    "Search emails Tooltip": "Extract all email addresses from the document",
+    "Extract URLs": "Find URLs",
+    "Extract URLs Tooltip": "Extract all web addresses (URLs) from the document",
+    "Find Phone Numbers": "Find Phone Numbers",
+    "Find Phone Numbers Tooltip": "Extract all phone numbers from the document"
 }

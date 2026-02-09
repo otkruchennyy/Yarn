@@ -10,11 +10,12 @@ from widgets.aside_panels.workspaces import WorkspacesPanel
 
 class aside(QWidget):
     """Aside widget"""
-    def __init__(self, parent=None, theme=None, tabs_widget=None, base_path=None):
+    def __init__(self, parent=None, theme=None, tabs_widget=None, base_path=None, lang=None):
         super().__init__(parent)
         self.theme = theme
         self.base_path = base_path
         self.tabs = tabs_widget
+        self.lang = lang
         
         self.setMouseTracking(True)
         self.setFixedWidth(50)
@@ -32,21 +33,21 @@ class aside(QWidget):
     
     def create_panels(self):
         """Create and register all content panels"""
-        # Workspaces panel
-        self.workspaces_panel = WorkspacesPanel(self.base_path, self.tabs, self.theme)
-        al.register_panel('workspaces', self.workspaces_panel)
-        
         # Tools panel
-        self.tools_panel = ToolsPanel(self.base_path, self.theme)
+        self.tools_panel = ToolsPanel(self.base_path, self.theme, lang=self.lang)
         al.register_panel('tools', self.tools_panel)
         
         # Plugins panel 
-        self.plugins_panel = PluginsPanel(self.base_path, self.theme)
+        self.plugins_panel = PluginsPanel(self.base_path, self.theme, lang=self.lang)
         al.register_panel('plugins', self.plugins_panel)
         
         # Settings panel
-        self.settings_panel = SettingsPanel(self.base_path, self.theme)
+        self.settings_panel = SettingsPanel(self.base_path, self.theme, lang=self.lang)
         al.register_panel('settings', self.settings_panel)
+        
+        # Workspaces panel
+        self.workspaces_panel = WorkspacesPanel(self.base_path, self.tabs, self.theme, lang=self.lang)
+        al.register_panel('workspaces', self.workspaces_panel)
     
     def setup_ui(self):
         """
@@ -94,32 +95,32 @@ States:
         self.widget1.setFixedWidth(50)
 
         self.btn_toggle = QPushButton(">>")
-        self.btn_toggle.setToolTip("Aside panel")
+        self.btn_toggle.setToolTip(self.lang["Aside panel"])
         self.btn_toggle.clicked.connect(al.aside_state)
         self.btn_toggle.setProperty("class", "main")
 
         self.btn_workspaces = QPushButton("🗂") # TODO: replace emoji with img
-        self.btn_workspaces.setToolTip("Workspaces")
+        self.btn_workspaces.setToolTip(self.lang["Workspaces"])
         self.btn_workspaces.clicked.connect(al.btn_workspaces_clicked)
         self.btn_workspaces.setProperty("class", "main")
 
         self.btn_tools = QPushButton("🛠") # TODO: replace emoji with img
-        self.btn_tools.setToolTip("Tools")
+        self.btn_tools.setToolTip(self.lang["Tools"])
         self.btn_tools.clicked.connect(al.btn_tools_clicked)
         self.btn_tools.setProperty("class", "main")
 
         self.btn_plugins = QPushButton("🧩") # TODO: replace emoji with img
-        self.btn_plugins.setToolTip("Plugins")
+        self.btn_plugins.setToolTip(self.lang["Plugins"])
         self.btn_plugins.clicked.connect(al.btn_plugins_clicked)
         self.btn_plugins.setProperty("class", "main")
 
         self.btn_settings = QPushButton("⚙") # TODO: replace emoji with img
-        self.btn_settings.setToolTip("Settings")
+        self.btn_settings.setToolTip(self.lang["Settings"])
         self.btn_settings.clicked.connect(al.btn_settings_clicked)
         self.btn_settings.setProperty("class", "main")
 
         self.btn_ExtraPanels = QPushButton("📋") # TODO: replace emoji with img
-        self.btn_ExtraPanels.setToolTip("View extra panels")
+        self.btn_ExtraPanels.setToolTip(self.lang["View extra panels"])
         self.btn_ExtraPanels.clicked.connect(al.btn_ExtraPanels_clicked)
         self.btn_ExtraPanels.setProperty("class", "secondary")
         

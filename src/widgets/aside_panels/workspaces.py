@@ -5,11 +5,12 @@ import os
 import utils.helpers as helpers
 
 class WorkspacesPanel(QWidget):
-    def __init__(self, base_path, tabs_manager, theme):
+    def __init__(self, base_path, tabs_manager, theme, lang=None):
         super().__init__()
         self.theme = theme
         self.base_path = base_path
         self.tabs = tabs_manager
+        self.lang = lang
         self.workspaces_widgets = {}
         self.workspaces_path = os.path.join(self.base_path, "config", "workspaces")
         self.workspaces = helpers.get_files_from_directory(self.workspaces_path, 'json')
@@ -28,7 +29,7 @@ class WorkspacesPanel(QWidget):
         """Loading workspaces"""
         font = QFont("Segoe UI", 10) # TODO: current font
 
-        name_property = QLabel("workspaces")
+        name_property = QLabel(self.lang["Workspaces"])
         self.layout.addWidget(name_property)
         self.workspaces_widgets["name_property"] = name_property
 

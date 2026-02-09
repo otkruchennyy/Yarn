@@ -104,7 +104,7 @@ class MainWindow(QMainWindow):
         right_layout.addWidget(self.text_editor)
         right_layout.addWidget(self.extra_panel)
 
-        self.aside = aside.aside(parent=self, theme=self.theme_default, tabs_widget=self.tabs, base_path=self.base_path)
+        self.aside = aside.aside(parent=self, theme=self.theme_default, tabs_widget=self.tabs, base_path=self.base_path, lang=self.lang_data)
         
         main_content.addWidget(self.aside)
         main_content.addWidget(self.right_panel)
