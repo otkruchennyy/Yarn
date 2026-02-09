@@ -43,12 +43,21 @@ class StatPanel(QWidget):
         self.theme = theme
         self.lang = lang
         
-        # Initialize data stores
-        self.cpu_data = []
-        self.memory_data = []
+        self._init_theme_properties()
         
         self.setup_ui()
         self.apply_theme()
+
+    def _init_theme_properties(self):
+        """init theme properties for setup_ui."""
+        if self.theme:
+            self.text_main = self.theme.get('text_main', '#FFFFFF')
+            self.bg_card = self.theme.get('bg_card', '#2D2D2D')
+            self.accent_gray = self.theme.get('accent_gray', '#555555')
+        else:
+            self.text_main = '#FFFFFF'
+            self.bg_card = '#2D2D2D'
+            self.accent_gray = '#555555'
     
     def setup_ui(self):
         """
@@ -111,7 +120,7 @@ class StatPanel(QWidget):
             pg.PlotWidget: Configured graph widget
         """
         graph = pg.PlotWidget()
-        graph.setTitle(title, color=self.text_main if self.theme else "#FFFFFF")
+        graph.setTitle(title, color=self.text_main)
         graph.setLabel('left', y_label)
         graph.setLabel('bottom', 'Time', 's')
         graph.showGrid(x=True, y=True, alpha=0.3)
@@ -120,9 +129,9 @@ class StatPanel(QWidget):
             graph.setYRange(*y_range)
         
         # Style based on theme
-        bg_color = self.theme.get('bg_card', '#2D2D2D') if self.theme else '#2D2D2D'
-        text_color = self.theme.get('text_main', '#FFFFFF') if self.theme else '#FFFFFF'
-        grid_color = self.theme.get('accent_gray', '#555555') if self.theme else '#555555'
+        bg_color = self.bg_card
+        text_color = self.text_main
+        grid_color = self.accent_gray
         
         graph.setBackground(bg_color)
         graph.getAxis('left').setTextPen(text_color)
